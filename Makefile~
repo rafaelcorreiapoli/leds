@@ -2,5 +2,5 @@
 COMPONENT=BootLedsAppC
 TINYOS_ROOT_DIR?=../..
 include $(TINYOS_ROOT_DIR)/Makefile.include
-CFLAGS += -I$(TINYOS_OS_DIR)/lib/printf
+CFLAGS += -I$(TINY_OS_DIR)/lib/printf
 CFLAGS += -DPRINTF_BUFFER_SIZE=1024

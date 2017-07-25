@@ -1,4 +1,5 @@
 #include <Timer.h>
+#include "printf.h"
 
 module BootLedsC {
   uses {
@@ -7,6 +8,7 @@ module BootLedsC {
     interface Timer<TMilli> as LigarTimerA;
     interface Timer<TMilli> as LigarTimerB;
     interface Timer<TMilli> as LigarTimerC;
+    interface Timer<TMilli> as LigarTimerHelloWorld;
   }
 }
 implementation{
@@ -22,12 +24,17 @@ implementation{
     //call Leds.set(2);  //comando para represent ação binária de um valor numérico através dos três leds
   }
 
-  event void Boot.booted() {
-    // acoes a serem executadas apos o boot
-    acenderLeds();
+  void iniciarTimers() {
     call LigarTimerA.startPeriodic(500);
     call LigarTimerB.startPeriodic(1000);
     call LigarTimerC.startPeriodic(2000);
+    call LigarTimerHelloWorld.startPeriodic(5000);
+  }
+  event void Boot.booted() {
+    // acoes a serem executadas apos o boot
+    acenderLeds();
+    iniciarTimers();
+    
   }
 
   event void LigarTimerA.fired() {

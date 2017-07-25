@@ -42,7 +42,11 @@
 #define RADIO_COUNT_TO_LEDS_H
 
 typedef nx_struct radio_count_msg {
-  nx_uint16_t counter;
+  nx_uint16_t id;
+  nx_uint16_t temp;
+  nx_uint16_t hum;
+  nx_uint16_t visible;
+  nx_uint16_t ir;
 } radio_count_msg_t;
 
 enum {

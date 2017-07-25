@@ -41,6 +41,8 @@
  */
  
 #include "RadioCountToLeds.h"
+#define NEW_PRINTF_SEMANTICS
+#include "printf.h"
 
 /**
  * Configuration for the RadioCountToLeds application. RadioCountToLeds 
@@ -60,7 +62,14 @@ implementation {
   components new AMReceiverC(AM_RADIO_COUNT_MSG);
   components new TimerMilliC();
   components ActiveMessageC;
+  components SerialStartC;
+  components PrintfC;
   
+  //  sensores
+  components new HamamatsuS1087ParC() as Sensor1; // luminosidade
+  components new HamamatsuS10871TsrC() as Sensor2; // infravermelho
+  components new SensirionSht11C() as Sensor3; // umidade e temperatura
+
   App.Boot -> MainC.Boot;
   
   App.Receive -> AMReceiverC;
@@ -69,6 +78,12 @@ implementation {
   App.Leds -> LedsC;
   App.MilliTimer -> TimerMilliC;
   App.Packet -> AMSenderC;
+
+
+  App.Read1 -> Sensor1;
+  App.Read2 -> Sensor2;
+  App.Read3 -> Sensor3.Humidity;
+  App.Read4 -> Sensor3.Temperature;
 }
 
 

@@ -42,7 +42,8 @@
  
 #include "Timer.h"
 #include "RadioCountToLeds.h"
- 
+#include "printf.h"
+
 /**
  * Implementation of the RadioCountToLeds application. RadioCountToLeds 
  * maintains a 4Hz counter, broadcasting its value in an AM packet 
@@ -63,22 +64,73 @@ module RadioCountToLedsC @safe() {
     interface Timer<TMilli> as MilliTimer;
     interface SplitControl as AMControl;
     interface Packet;
+
+    //sensores
+    interface Read<uint16_t> as Read1;
+    interface Read<uint16_t> as Read2;
+    interface Read<uint16_t> as Read3;
+    interface Read<uint16_t> as Read4;
   }
 }
 implementation {
+  uint16_t temp;
+  uint16_t hum;
+  uint16_t visible;
+  uint16_t ir;
+
+  bool temp_flag;
+  bool hum_flag;
+  bool visible_flag;
+  bool ir_flag;
 
   message_t packet;
 
   bool locked;
   uint16_t counter = 0;
   
+
+  void resetaValoresSensor() {
+    temp_flag = FALSE ;
+    hum_flag = FALSE ;
+    visible_flag = FALSE ;
+    ir_flag = FALSE ;
+  }
+  void lerSensores() {
+    resetaValoresSensor();
+    call Read1.read();
+    call Read2.read();
+    call Read3.read();
+    call Read4.read();
+  }
+
+  uint16_t sht11TempToCelsius(uint16_t sht11temp) {
+    return (-39.60) + 0.01 * sht11temp;
+  }
+
+  uint16_t sht11HumidityToRelativeHumidity(uint16_t sht11humidity) {
+    return -4+0.0405 * sht11humidity - 2.8e-6*(sht11humidity * sht11humidity);
+  }
+  void init() {
+    call Leds.led0Off();
+    call Leds.led1Off();
+    call Leds.led2Off();
+
+    // acender led vermelho
+    call Leds.led0On();
+    // Ler sensores
+    lerSensores();
+    // acender led verde
+    call Leds.led1On();
+  }
+
   event void Boot.booted() {
     call AMControl.start();
+    
   }
 
   event void AMControl.startDone(error_t err) {
     if (err == SUCCESS) {
-      call MilliTimer.startPeriodic(250);
+      call MilliTimer.startPeriodic(10000);
     }
     else {
       call AMControl.start();
@@ -88,61 +140,102 @@ implementation {
   event void AMControl.stopDone(error_t err) {
     // do nothing
   }
-  
-  event void MilliTimer.fired() {
-    counter++;
-    dbg("RadioCountToLedsC", "RadioCountToLedsC: timer fired, counter is %hu.\n", counter);
-    if (locked) {
-      return;
-    }
-    else {
-      radio_count_msg_t* rcm = (radio_count_msg_t*)call Packet.getPayload(&packet, sizeof(radio_count_msg_t));
-      if (rcm == NULL) {
-	return;
-      }
 
-      rcm->counter = counter;
-      if (call AMSend.send(AM_BROADCAST_ADDR, &packet, sizeof(radio_count_msg_t)) == SUCCESS) {
-	dbg("RadioCountToLedsC", "RadioCountToLedsC: packet sent.\n", counter);	
-	locked = TRUE;
-      }
-    }
+  event void AMSend.sendDone(message_t* bufPtr, error_t error) {
+    dbg("RadioCountToLedsC", "RadioCountToLedsC: Send done.\n");
+  }
+
+
+  void printTemperatura(uint16_t temperatura) {
+    printf("T: %u celsius \n", temperatura);
+    printfflush();
+  }
+  void printLuminosidade(uint16_t luminosidade) {
+    printf("L: %u lumen \n", luminosidade);
+    printfflush();
+  }
+  void printLuminosidadeInfravermelho(uint16_t luminosidade) {
+    printf("LI: %u lumen \n", luminosidade);
+    printfflush();
+  }
+   void printHumidity(uint16_t humidadeRelativa) {
+    printf("H %u % \n", humidadeRelativa);
+    printfflush();
+  }
+
+  event void MilliTimer.fired() {
+    init();
   }
 
   event message_t* Receive.receive(message_t* bufPtr, 
-				   void* payload, uint8_t len) {
-    dbg("RadioCountToLedsC", "Received packet of length %hhu.\n", len);
-    if (len != sizeof(radio_count_msg_t)) {return bufPtr;}
-    else {
-      radio_count_msg_t* rcm = (radio_count_msg_t*)payload;
-      if (rcm->counter & 0x1) {
-	call Leds.led0On();
-      }
-      else {
-	call Leds.led0Off();
-      }
-      if (rcm->counter & 0x2) {
-	call Leds.led1On();
-      }
-      else {
-	call Leds.led1Off();
-      }
-      if (rcm->counter & 0x4) {
-	call Leds.led2On();
-      }
-      else {
-	call Leds.led2Off();
-      }
-      return bufPtr;
-    }
+           void* payload, uint8_t len) {
+    
   }
 
-  event void AMSend.sendDone(message_t* bufPtr, error_t error) {
-    if (&packet == bufPtr) {
-      locked = FALSE;
+  // void enviarPacote(radio_count_msg_t* rcm) {
+  //   if (call AMSend.send(AM_BROADCAST_ADDR, &packet, sizeof(radio_count_msg_t)) == SUCCESS) {
+  //     dbg("RadioCountToLedsC", "RadioCountToLedsC: packet sent.\n", counter); 
+  //   }
+  // }
+
+  void montarPacote(uint16_t temp_l, uint16_t hum_l, uint16_t visible_l, uint16_t ir_l) {
+    // dbg("RadioCountToLedsC", "RadioCountToLedsC: timer fired, counter is %hu.\n", counter);
+    radio_count_msg_t* rcm = (radio_count_msg_t*)call Packet.getPayload(&packet, sizeof(radio_count_msg_t));
+    if (rcm == NULL) {
+      return;
+    }
+
+    rcm->id = 1;
+    rcm->temp = temp_l;
+    rcm->hum = hum_l;
+    rcm->visible = visible_l;
+    rcm->ir = ir_l;
+
+    if (call AMSend.send(AM_BROADCAST_ADDR, &packet, sizeof(radio_count_msg_t)) == SUCCESS) {
+      dbg("RadioCountToLedsC", "RadioCountToLedsC: packet sent.\n", counter); 
     }
   }
+  void checarValores() {
+    if (temp_flag
+     && hum_flag
+     && visible_flag
+     && ir_flag
+    ) {
+      call Leds.led2On();
+      montarPacote(temp, hum, visible, ir);
+      
+    }
+  }
+ // luminosidade
+  event void Read1.readDone(error_t result, uint16_t data) {
+    printLuminosidade(data);
+    visible = data;
+    visible_flag = TRUE;
+    checarValores();
+  }
+  // luminosidade (infravermelho)
+  event void Read2.readDone(error_t result, uint16_t data) {
+    printLuminosidadeInfravermelho(data);
+    ir = data;
+    ir_flag = TRUE;
+    checarValores();
+  }
 
+  // humidade (precisa converter para humidade relativa)
+  event void Read3.readDone(error_t result, uint16_t data) {
+    printHumidity(sht11HumidityToRelativeHumidity(data));
+    hum = data;
+    hum_flag = TRUE;
+    checarValores();
+  }
+
+  // temperatura (precisa converter para celsius)
+  event void Read4.readDone(error_t result, uint16_t data) {
+    printTemperatura(sht11TempToCelsius(data));
+    temp = data;
+    temp_flag = TRUE;
+    checarValores();
+  }
 }
 
 

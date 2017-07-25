@@ -1,20 +1,62 @@
 <nesc xmlns="http://www.tinyos.net/nesC">
   <wiring>
-    <wire loc="8:BootLedsAppC.nc">
-      <from><interface-ref name="Leds" scoped="" ref="0x405e9520"/></from>
+    <wire loc="12:BootLedsAppC.nc">
+      <from><interface-ref name="Leds" scoped="" ref="0x408456b8"/></from>
       <to><interface-ref name="Leds" scoped="" ref="0x405f3e70"/></to>
     </wire>
     <wire loc="51:../../tos/system/LedsC.nc">
       <from><interface-ref name="Leds" scoped="" ref="0x405f3e70"/></from>
       <to><interface-ref name="Leds" scoped="" ref="0x405f1da0"/></to>
     </wire>
-    <wire loc="9:BootLedsAppC.nc">
-      <from><interface-ref name="Boot" scoped="" ref="0x40845180"/></from>
+    <wire loc="13:BootLedsAppC.nc">
+      <from><interface-ref name="Boot" scoped="" ref="0x40843340"/></from>
       <to><interface-ref name="Boot" scoped="" ref="0x408359b8"/></to>
     </wire>
     <wire loc="72:../../tos/system/MainC.nc">
       <from><interface-ref name="Boot" scoped="" ref="0x408359b8"/></from>
       <to><interface-ref name="Boot" scoped="" ref="0x40834a70"/></to>
+    </wire>
+    <wire loc="14:BootLedsAppC.nc">
+      <from><interface-ref name="LigarTimerA" scoped="" ref="0x408552a0"/></from>
+      <to><interface-ref name="Timer" scoped="" ref="0x4084ccd8"/></to>
+    </wire>
+    <wire loc="52:../../tos/system/TimerMilliC.nc">
+      <from><interface-ref name="Timer" scoped="" ref="0x4084ccd8"/></from>
+      <to><interface-ref name="TimerMilli" scoped="" ref="0x40861cc8"/>
+      <arguments>
+        <value cst="I:0">
+          <type-int cname="unsigned int" unsigned="" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </to>
+    </wire>
+    <wire loc="15:BootLedsAppC.nc">
+      <from><interface-ref name="LigarTimerB" scoped="" ref="0x40841610"/></from>
+      <to><interface-ref name="Timer" scoped="" ref="0x40946c00"/></to>
+    </wire>
+    <wire loc="52:../../tos/system/TimerMilliC.nc">
+      <from><interface-ref name="Timer" scoped="" ref="0x40946c00"/></from>
+      <to><interface-ref name="TimerMilli" scoped="" ref="0x40861cc8"/>
+      <arguments>
+        <value cst="I:1">
+          <type-int cname="unsigned int" unsigned="" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </to>
+    </wire>
+    <wire loc="16:BootLedsAppC.nc">
+      <from><interface-ref name="LigarTimerC" scoped="" ref="0x40852968"/></from>
+      <to><interface-ref name="Timer" scoped="" ref="0x40943ab8"/></to>
+    </wire>
+    <wire loc="52:../../tos/system/TimerMilliC.nc">
+      <from><interface-ref name="Timer" scoped="" ref="0x40943ab8"/></from>
+      <to><interface-ref name="TimerMilli" scoped="" ref="0x40861cc8"/>
+      <arguments>
+        <value cst="I:2">
+          <type-int cname="unsigned int" unsigned="" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </to>
     </wire>
     <wire loc="53:../../tos/system/LedsC.nc">
       <from><interface-ref name="Init" scoped="" ref="0x40610a38"/></from>
@@ -688,6 +730,10 @@
       </arguments>
       </to>
     </wire>
+    <wire loc="53:../../tos/system/TimerMilliP.nc">
+      <from><interface-ref name="SoftwareInit" scoped="" ref="0x40835dc0"/></from>
+      <to><interface-ref name="Init" scoped="" ref="0x4085b598"/></to>
+    </wire>
     <wire loc="67:../../tos/system/MainC.nc">
       <from><interface-ref name="Scheduler" scoped="" ref="0x40834e08"/></from>
       <to><interface-ref name="Scheduler" scoped="" ref="0x4035d5f0"/></to>
@@ -711,6 +757,316 @@
     <wire loc="55:../../tos/system/TinySchedulerC.nc">
       <from><interface-ref name="McuSleep" scoped="" ref="0x405cc210"/></from>
       <to><interface-ref name="McuSleep" scoped="" ref="0x4035ea90"/></to>
+    </wire>
+    <wire loc="54:../../tos/system/TimerMilliP.nc">
+      <from><interface-ref name="TimerMilli" scoped="" ref="0x40861cc8"/></from>
+      <to><interface-ref name="TimerMilli" scoped="" ref="0x4085bd48"/></to>
+    </wire>
+    <wire loc="58:../../tos/chips/msp430/timer/HilTimerMilliC.nc">
+      <from><interface-ref name="TimerMilli" scoped="" ref="0x4085bd48"/></from>
+      <to><interface-ref name="Timer" scoped="" ref="0x40906f00"/></to>
+    </wire>
+    <wire loc="57:../../tos/chips/msp430/timer/HilTimerMilliC.nc">
+      <from><interface-ref name="Init" scoped="" ref="0x4085b598"/></from>
+      <to><interface-ref name="Init" scoped="" ref="0x4086e010"/></to>
+    </wire>
+    <wire loc="59:../../tos/chips/msp430/timer/HilTimerMilliC.nc">
+      <from><interface-ref name="LocalTime" scoped="" ref="0x40871da8"/></from>
+      <to><interface-ref name="LocalTime" scoped="" ref="0x40933940"/></to>
+    </wire>
+    <wire loc="52:../../tos/chips/msp430/timer/AlarmMilli32C.nc">
+      <from><interface-ref name="Init" scoped="" ref="0x4086e010"/></from>
+      <to><interface-ref name="Init" scoped="" ref="0x40bca4f8"/></to>
+    </wire>
+    <wire loc="61:../../tos/chips/msp430/timer/HilTimerMilliC.nc">
+      <from><interface-ref name="TimerFrom" scoped="" ref="0x40938338"/></from>
+      <to><interface-ref name="Timer" scoped="" ref="0x40904cb0"/></to>
+    </wire>
+    <wire loc="62:../../tos/chips/msp430/timer/HilTimerMilliC.nc">
+      <from><interface-ref name="Alarm" scoped="" ref="0x4090a010"/></from>
+      <to><interface-ref name="Alarm" scoped="" ref="0x4086e468"/></to>
+    </wire>
+    <wire loc="53:../../tos/chips/msp430/timer/AlarmMilli32C.nc">
+      <from><interface-ref name="Alarm" scoped="" ref="0x4086e468"/></from>
+      <to><interface-ref name="Alarm" scoped="" ref="0x40bf0358"/></to>
+    </wire>
+    <wire loc="63:../../tos/chips/msp430/timer/HilTimerMilliC.nc">
+      <from><interface-ref name="Counter" scoped="" ref="0x4094f360"/></from>
+      <to><interface-ref name="Counter" scoped="" ref="0x408b9088"/></to>
+    </wire>
+    <wire loc="50:../../tos/chips/msp430/timer/CounterMilli32C.nc">
+      <from><interface-ref name="Counter" scoped="" ref="0x408b9088"/></from>
+      <to><interface-ref name="Counter" scoped="" ref="0x408c3320"/></to>
+    </wire>
+    <wire loc="51:../../tos/chips/msp430/timer/Alarm32khz16C.nc">
+      <from><interface-ref name="Init" scoped="" ref="0x40bca4f8"/></from>
+      <to><interface-ref name="Init" scoped="" ref="0x40be5d30"/></to>
+    </wire>
+    <wire loc="55:../../tos/chips/msp430/timer/AlarmMilli32C.nc">
+      <from><interface-ref name="AlarmFrom" scoped="" ref="0x40bec078"/></from>
+      <to><interface-ref name="Alarm" scoped="" ref="0x40bca950"/></to>
+    </wire>
+    <wire loc="52:../../tos/chips/msp430/timer/Alarm32khz16C.nc">
+      <from><interface-ref name="Alarm" scoped="" ref="0x40bca950"/></from>
+      <to><interface-ref name="Alarm" scoped="" ref="0x40be41d0"/></to>
+    </wire>
+    <wire loc="56:../../tos/chips/msp430/timer/AlarmMilli32C.nc">
+      <from><interface-ref name="Counter" scoped="" ref="0x40befe08"/></from>
+      <to><interface-ref name="Counter" scoped="" ref="0x408b9088"/></to>
+    </wire>
+    <wire loc="54:../../tos/chips/msp430/timer/Alarm32khz16C.nc">
+      <from><interface-ref name="Msp430Timer" scoped="" ref="0x40be3b38"/></from>
+      <to><interface-ref name="Msp430Timer" scoped="" ref="0x40be71b0"/></to>
+    </wire>
+    <wire loc="49:../../tos/chips/msp430/timer/Msp430Timer32khzC.nc">
+      <from><interface-ref name="Msp430Timer" scoped="" ref="0x40be71b0"/></from>
+      <to><interface-ref name="Msp430Timer" scoped="" ref="0x408798e8"/>
+      <arguments>
+        <value cst="I:0">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </to>
+    </wire>
+    <wire loc="55:../../tos/chips/msp430/timer/Alarm32khz16C.nc">
+      <from><interface-ref name="Msp430TimerControl" scoped="" ref="0x40be2790"/></from>
+      <to><interface-ref name="Msp430TimerControl" scoped="" ref="0x40be7da8"/></to>
+    </wire>
+    <wire loc="50:../../tos/chips/msp430/timer/Msp430Timer32khzC.nc">
+      <from><interface-ref name="Msp430TimerControl" scoped="" ref="0x40be7da8"/></from>
+      <to><interface-ref name="Msp430TimerControl" scoped="" ref="0x40892890"/>
+      <arguments>
+        <value cst="I:0">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </to>
+    </wire>
+    <wire loc="56:../../tos/chips/msp430/timer/Alarm32khz16C.nc">
+      <from><interface-ref name="Msp430Compare" scoped="" ref="0x40be1250"/></from>
+      <to><interface-ref name="Msp430Compare" scoped="" ref="0x40be6870"/></to>
+    </wire>
+    <wire loc="51:../../tos/chips/msp430/timer/Msp430Timer32khzC.nc">
+      <from><interface-ref name="Msp430Compare" scoped="" ref="0x40be6870"/></from>
+      <to><interface-ref name="Msp430Compare" scoped="" ref="0x40890698"/>
+      <arguments>
+        <value cst="I:0">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </to>
+    </wire>
+    <wire loc="58:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430Timer" scoped="" ref="0x408798e8"/>
+      <arguments>
+        <value cst="I:0">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="TimerB" scoped="" ref="0x40741e60"/></to>
+    </wire>
+    <wire loc="59:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430TimerControl" scoped="" ref="0x40892890"/>
+      <arguments>
+        <value cst="I:0">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="ControlB0" scoped="" ref="0x40753ba8"/></to>
+    </wire>
+    <wire loc="60:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430Compare" scoped="" ref="0x40890698"/>
+      <arguments>
+        <value cst="I:0">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="CompareB0" scoped="" ref="0x40761de8"/></to>
+    </wire>
+    <wire loc="66:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430Timer" scoped="" ref="0x408798e8"/>
+      <arguments>
+        <value cst="I:1">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="TimerB" scoped="" ref="0x40741e60"/></to>
+    </wire>
+    <wire loc="67:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430TimerControl" scoped="" ref="0x40892890"/>
+      <arguments>
+        <value cst="I:1">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="ControlB2" scoped="" ref="0x4074d468"/></to>
+    </wire>
+    <wire loc="68:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430Compare" scoped="" ref="0x40890698"/>
+      <arguments>
+        <value cst="I:1">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="CompareB2" scoped="" ref="0x40760db8"/></to>
+    </wire>
+    <wire loc="70:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430Timer" scoped="" ref="0x408798e8"/>
+      <arguments>
+        <value cst="I:2">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="TimerB" scoped="" ref="0x40741e60"/></to>
+    </wire>
+    <wire loc="71:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430TimerControl" scoped="" ref="0x40892890"/>
+      <arguments>
+        <value cst="I:2">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="ControlB3" scoped="" ref="0x4074c010"/></to>
+    </wire>
+    <wire loc="72:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430Compare" scoped="" ref="0x40890698"/>
+      <arguments>
+        <value cst="I:2">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="CompareB3" scoped="" ref="0x4075f5f8"/></to>
+    </wire>
+    <wire loc="74:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430Timer" scoped="" ref="0x408798e8"/>
+      <arguments>
+        <value cst="I:3">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="TimerB" scoped="" ref="0x40741e60"/></to>
+    </wire>
+    <wire loc="75:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430TimerControl" scoped="" ref="0x40892890"/>
+      <arguments>
+        <value cst="I:3">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="ControlB4" scoped="" ref="0x4074cb80"/></to>
+    </wire>
+    <wire loc="76:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430Compare" scoped="" ref="0x40890698"/>
+      <arguments>
+        <value cst="I:3">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="CompareB4" scoped="" ref="0x4075fdb8"/></to>
+    </wire>
+    <wire loc="78:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430Timer" scoped="" ref="0x408798e8"/>
+      <arguments>
+        <value cst="I:4">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="TimerB" scoped="" ref="0x40741e60"/></to>
+    </wire>
+    <wire loc="79:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430TimerControl" scoped="" ref="0x40892890"/>
+      <arguments>
+        <value cst="I:4">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="ControlB5" scoped="" ref="0x4074b708"/></to>
+    </wire>
+    <wire loc="80:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430Compare" scoped="" ref="0x40890698"/>
+      <arguments>
+        <value cst="I:4">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="CompareB5" scoped="" ref="0x4075e5f8"/></to>
+    </wire>
+    <wire loc="82:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430Timer" scoped="" ref="0x408798e8"/>
+      <arguments>
+        <value cst="I:5">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="TimerB" scoped="" ref="0x40741e60"/></to>
+    </wire>
+    <wire loc="83:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430TimerControl" scoped="" ref="0x40892890"/>
+      <arguments>
+        <value cst="I:5">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="ControlB6" scoped="" ref="0x407612a8"/></to>
+    </wire>
+    <wire loc="84:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <from><interface-ref name="Msp430Compare" scoped="" ref="0x40890698"/>
+      <arguments>
+        <value cst="I:5">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </from>
+      <to><interface-ref name="CompareB6" scoped="" ref="0x4075edb8"/></to>
+    </wire>
+    <wire loc="52:../../tos/chips/msp430/timer/CounterMilli32C.nc">
+      <from><interface-ref name="CounterFrom" scoped="" ref="0x408c25f8"/></from>
+      <to><interface-ref name="Msp430Counter32khz" scoped="" ref="0x408b8c10"/></to>
+    </wire>
+    <wire loc="50:../../tos/chips/msp430/timer/Msp430Counter32khzC.nc">
+      <from><interface-ref name="Msp430Counter32khz" scoped="" ref="0x408b8c10"/></from>
+      <to><interface-ref name="Counter" scoped="" ref="0x408b1578"/></to>
+    </wire>
+    <wire loc="51:../../tos/chips/msp430/timer/Msp430Counter32khzC.nc">
+      <from><interface-ref name="Msp430Timer" scoped="" ref="0x408b0730"/></from>
+      <to><interface-ref name="TimerB" scoped="" ref="0x40741e60"/></to>
+    </wire>
+    <wire loc="74:../../tos/lib/timer/AlarmToTimerC.nc">
+      <from><interface-ref name="fired" scoped="" ref="0x409099a8"/></from>
+      <to><interface-ref name="TaskBasic" scoped="" ref="0x4036ad58"/>
+      <arguments>
+        <value cst="I:0">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </to>
+    </wire>
+    <wire loc="71:../../tos/lib/timer/VirtualizeTimerC.nc">
+      <from><interface-ref name="updateFromTimer" scoped="" ref="0x40935560"/></from>
+      <to><interface-ref name="TaskBasic" scoped="" ref="0x4036ad58"/>
+      <arguments>
+        <value cst="I:1">
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </value>
+      </arguments>
+      </to>
     </wire>
   </wiring>
   <components>
@@ -2404,8 +2760,238 @@
     <component qname="SchedulerBasicP" loc="54:../../tos/system/SchedulerBasicP.nc" safe="">
       <module/>
     </component>
-    <component qname="BootLedsC" loc="1:BootLedsC.nc">
+    <component qname="BootLedsC" loc="3:BootLedsC.nc">
       <module/>
+    </component>
+    <component qname="BootLedsAppC.LigarTimerA" loc="44(BootLedsAppC.LigarTimerA):../../tos/system/TimerMilliC.nc">
+      <documentation loc="33:../../tos/system/TimerMilliC.nc">
+        <short>&#10; The virtualized millisecond timer abstraction.</short>
+        <long>&#10; The virtualized millisecond timer abstraction. Instantiating this &#10; component gives an independent millisecond granularity timer.&#10;&#10; @author Philip Levis&#10; @date   January 16 2006&#10; @see    TEP 102: Timers&#10;</long>
+      </documentation>
+      <instance number="0">
+        <component-ref qname="TimerMilliC"/>
+      </instance>
+      <configuration/>
+    </component>
+    <component qname="TimerMilliP" loc="48:../../tos/system/TimerMilliP.nc">
+      <documentation loc="34:../../tos/system/TimerMilliP.nc">
+        <short>&#10; Components should never wire to this component.</short>
+        <long>&#10; Components should never wire to this component. This is the&#10; underlying configuration of virtualized millisecond timers. &#10; It auto-wires wires the timer&#10; implementation (TimerC) to the boot sequence and exports the&#10; various Timer interfaces.&#10;&#10; @author Philip Levis&#10; @author Cory Sharp&#10; @date   May 16 2005&#10;</long>
+      </documentation>
+      <configuration/>
+    </component>
+    <component qname="HilTimerMilliC" loc="43:../../tos/chips/msp430/timer/HilTimerMilliC.nc">
+      <documentation loc="33:../../tos/chips/msp430/timer/HilTimerMilliC.nc">
+        <short>&#10; HilTimerMilliC provides a parameterized interface to a virtualized&#10; millisecond timer.</short>
+        <long>&#10; HilTimerMilliC provides a parameterized interface to a virtualized&#10; millisecond timer.  TimerMilliC in tos/system/ uses this component to&#10; allocate new timers.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10; @see  Please refer to TEP 102 for more information about this component and its&#10;          intended use.&#10;</long>
+      </documentation>
+      <configuration/>
+    </component>
+    <component qname="HilTimerMilliC.AlarmMilli32C" loc="41(HilTimerMilliC.AlarmMilli32C):../../tos/chips/msp430/timer/AlarmMilli32C.nc">
+      <documentation loc="33:../../tos/chips/msp430/timer/AlarmMilli32C.nc">
+        <short>&#10; AlarmMilliC is the alarm for async millisecond alarms&#10;&#10; </short>
+        <long>&#10; AlarmMilliC is the alarm for async millisecond alarms&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10; @see  Please refer to TEP 102 for more information about this component and its&#10;          intended use.&#10;</long>
+      </documentation>
+      <instance number="0">
+        <component-ref qname="AlarmMilli32C"/>
+      </instance>
+      <configuration/>
+    </component>
+    <component qname="HilTimerMilliC.AlarmMilli32C.AlarmFrom" loc="41(HilTimerMilliC.AlarmMilli32C.AlarmFrom):../../tos/chips/msp430/timer/Alarm32khz16C.nc">
+      <documentation loc="33:../../tos/chips/msp430/timer/Alarm32khz16C.nc">
+        <short>&#10; Alarm32khzC is the alarm for async 32khz alarms&#10;&#10; </short>
+        <long>&#10; Alarm32khzC is the alarm for async 32khz alarms&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10; @see  Please refer to TEP 102 for more information about this component and its&#10;          intended use.&#10;</long>
+      </documentation>
+      <instance number="0">
+        <component-ref qname="Alarm32khz16C"/>
+      </instance>
+      <configuration/>
+    </component>
+    <component qname="HilTimerMilliC.AlarmMilli32C.AlarmFrom.Msp430Timer" loc="37(HilTimerMilliC.AlarmMilli32C.AlarmFrom.Msp430Timer):../../tos/chips/msp430/timer/Msp430Timer32khzC.nc">
+      <documentation loc="33:../../tos/chips/msp430/timer/Msp430Timer32khzC.nc">
+        <short>&#10; </short>
+        <long>&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
+      </documentation>
+      <instance number="0">
+        <component-ref qname="Msp430Timer32khzC"/>
+      </instance>
+      <configuration/>
+    </component>
+    <component qname="Msp430Timer32khzMapC" loc="48:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <documentation loc="34:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+        <short>&#10; MSP430Timer32khzMapC presents as paramaterized interfaces all of&#10; the 32khz hardware timers on the MSP430 that are available for&#10; compile time allocation by &#34;new Alarm32khz16C()&#34;, &#34;new&#10; AlarmMilli32C()&#34;, and so on.</short>
+        <long>&#10; MSP430Timer32khzMapC presents as paramaterized interfaces all of&#10; the 32khz hardware timers on the MSP430 that are available for&#10; compile time allocation by &#34;new Alarm32khz16C()&#34;, &#34;new&#10; AlarmMilli32C()&#34;, and so on.  &#10;&#10; Platforms based on the MSP430 are * encouraged to copy in and&#10; override this file, presenting only the * hardware timers that are&#10; available for allocation on that platform.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10; @version $Revision: 1.5 $ $Date: 2010-06-29 22:07:55 $&#10;</long>
+      </documentation>
+      <configuration/>
+    </component>
+    <component qname="HilTimerMilliC.AlarmMilli32C.AlarmFrom.Msp430Alarm" loc="43(HilTimerMilliC.AlarmMilli32C.AlarmFrom.Msp430Alarm):../../tos/chips/msp430/timer/Msp430AlarmC.nc">
+      <documentation loc="34:../../tos/chips/msp430/timer/Msp430AlarmC.nc">
+        <short>&#10; Msp430Alarm is a generic component that wraps the MSP430 HPL timers and&#10; compares into a TinyOS Alarm.</short>
+        <long>&#10; Msp430Alarm is a generic component that wraps the MSP430 HPL timers and&#10; compares into a TinyOS Alarm.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10; @see  Please refer to TEP 102 for more information about this component and its&#10;          intended use.&#10;</long>
+      </documentation>
+      <instance number="0">
+        <component-ref qname="Msp430AlarmC"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9e40"/>
+            <typename><typedef-ref name="T32khz" ref="0x40845048"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <module/>
+    </component>
+    <component qname="CounterMilli32C" loc="41:../../tos/chips/msp430/timer/CounterMilli32C.nc">
+      <documentation loc="33:../../tos/chips/msp430/timer/CounterMilli32C.nc">
+        <short>&#10; CounterMilli32C provides at 32-bit counter at 1024 ticks per second.</short>
+        <long>&#10; CounterMilli32C provides at 32-bit counter at 1024 ticks per second.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10; @see  Please refer to TEP 102 for more information about this component and its&#10;          intended use.&#10;</long>
+      </documentation>
+      <configuration/>
+    </component>
+    <component qname="Msp430Counter32khzC" loc="41:../../tos/chips/msp430/timer/Msp430Counter32khzC.nc">
+      <documentation loc="33:../../tos/chips/msp430/timer/Msp430Counter32khzC.nc">
+        <short>&#10; Msp430Counter32khC provides the standard 32khz counter for the MSP430.</short>
+        <long>&#10; Msp430Counter32khC provides the standard 32khz counter for the MSP430.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10; @see  Please refer to TEP 102 for more information about this component and its&#10;          intended use.&#10;</long>
+      </documentation>
+      <configuration/>
+    </component>
+    <component qname="Msp430Counter32khzC.Counter" loc="42(Msp430Counter32khzC.Counter):../../tos/chips/msp430/timer/Msp430CounterC.nc">
+      <documentation loc="33:../../tos/chips/msp430/timer/Msp430CounterC.nc">
+        <short>&#10; Msp430Counter is a generic component that wraps the MSP430 HPL timers into a&#10; TinyOS Counter.</short>
+        <long>&#10; Msp430Counter is a generic component that wraps the MSP430 HPL timers into a&#10; TinyOS Counter.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10; @see  Please refer to TEP 102 for more information about this component and its&#10;          intended use.&#10;</long>
+      </documentation>
+      <instance number="0">
+        <component-ref qname="Msp430CounterC"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9e40"/>
+            <typename><typedef-ref name="T32khz" ref="0x40845048"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <module/>
+    </component>
+    <component qname="CounterMilli32C.Transform" loc="54(CounterMilli32C.Transform):../../tos/lib/timer/TransformCounterC.nc">
+      <documentation loc="34:../../tos/lib/timer/TransformCounterC.nc">
+        <short>&#10; TransformCounterC decreases precision and/or widens an Counter.</short>
+        <long>&#10; TransformCounterC decreases precision and/or widens an Counter.&#10;&#10; &#60;p>See TEP102 for more details.&#10;&#10; @param to_precision_tag A type indicating the precision of the transformed&#10;   Counter.&#10; @param to_size_type The type for the width of the transformed Counter.&#10; @param from_precision_tag A type indicating the precision of the original&#10;   Counter.&#10; @param from_size_type The type for the width of the original Counter.&#10; @param bit_shift_right Original time units will be 2 to the power &#10;   &#60;code>bit_shift_right&#60;/code> larger than transformed time units.&#10; @param upper_count_type A type large enough to store the upper bits --&#10;   those needed above from_size_type after its shift right to fill&#10;   to_size_type.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
+      </documentation>
+      <instance number="0">
+        <component-ref qname="TransformCounterC"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+          <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+            <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+          </type-int>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9e40"/>
+            <typename><typedef-ref name="T32khz" ref="0x40845048"/></typename>
+          </type-tag>
+          <type-int cname="unsigned int" unsigned="" size="I:2" alignment="I:2">
+            <typename><typedef-ref name="uint16_t" ref="0x401eb010"/></typename>
+          </type-int>
+          <value cst="I:5">
+            <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+          </value>
+          <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+            <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+          </type-int>
+        </arguments>
+      </instance>
+      <module/>
+    </component>
+    <component qname="HilTimerMilliC.AlarmMilli32C.Transform" loc="51(HilTimerMilliC.AlarmMilli32C.Transform):../../tos/lib/timer/TransformAlarmC.nc">
+      <documentation loc="34:../../tos/lib/timer/TransformAlarmC.nc">
+        <short>&#10; TransformAlarmC decreases precision and/or widens an Alarm.</short>
+        <long>&#10; TransformAlarmC decreases precision and/or widens an Alarm.  An already&#10; widened Counter component is used to help.&#10;&#10; &#60;p>See TEP102 for more details.&#10; @param to_precision_tag A type indicating the precision of the transformed&#10;   Alarm.&#10; @param to_size_type The type for the width of the transformed Alarm.&#10; @param from_precision_tag A type indicating the precision of the original&#10;   Alarm.&#10; @param from_size_type The type for the width of the original Alarm.&#10; @param bit_shift_right Original time units will be 2 to the power &#10;   &#60;code>bit_shift_right&#60;/code> larger than transformed time units.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
+      </documentation>
+      <instance number="0">
+        <component-ref qname="TransformAlarmC"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+          <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+            <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+          </type-int>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9e40"/>
+            <typename><typedef-ref name="T32khz" ref="0x40845048"/></typename>
+          </type-tag>
+          <type-int cname="unsigned int" unsigned="" size="I:2" alignment="I:2">
+            <typename><typedef-ref name="uint16_t" ref="0x401eb010"/></typename>
+          </type-int>
+          <value cst="I:5">
+            <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+          </value>
+        </arguments>
+      </instance>
+      <module/>
+    </component>
+    <component qname="HilTimerMilliC.AlarmToTimerC" loc="46(HilTimerMilliC.AlarmToTimerC):../../tos/lib/timer/AlarmToTimerC.nc">
+      <documentation loc="36:../../tos/lib/timer/AlarmToTimerC.nc">
+        <short>&#10; AlarmToTimerC converts a 32-bit Alarm to a Timer.</short>
+        <long>&#10; AlarmToTimerC converts a 32-bit Alarm to a Timer.  &#10;&#10; &#60;p>See TEP102 for more details.&#10; @param precision_tag A type indicating the precision of the Alarm and&#10; Timer being converted.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
+      </documentation>
+      <instance number="0">
+        <component-ref qname="AlarmToTimerC"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <module/>
+    </component>
+    <component qname="HilTimerMilliC.VirtualizeTimerC" loc="46(HilTimerMilliC.VirtualizeTimerC):../../tos/lib/timer/VirtualizeTimerC.nc">
+      <documentation loc="34:../../tos/lib/timer/VirtualizeTimerC.nc">
+        <short>&#10; VirtualizeTimerC uses a single Timer to create up to 255 virtual timers.</short>
+        <long>&#10; VirtualizeTimerC uses a single Timer to create up to 255 virtual timers.&#10;&#10; &#60;p>See TEP102 for more details.&#10;&#10; @param precision_tag A type indicating the precision of the Timer being &#10;   virtualized.&#10; @param max_timers Number of virtual timers to create.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
+      </documentation>
+      <instance number="0">
+        <component-ref qname="VirtualizeTimerC"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+          <value cst="I:3">
+            <type-int cname="unsigned int" unsigned="" size="I:2" alignment="I:2"></type-int>
+          </value>
+        </arguments>
+      </instance>
+      <module/>
+    </component>
+    <component qname="HilTimerMilliC.CounterToLocalTimeC" loc="46(HilTimerMilliC.CounterToLocalTimeC):../../tos/lib/timer/CounterToLocalTimeC.nc">
+      <documentation loc="36:../../tos/lib/timer/CounterToLocalTimeC.nc">
+        <short>&#10; CounterToLocalTimeC converts a 32-bit LocalTime to a Counter.</short>
+        <long>&#10; CounterToLocalTimeC converts a 32-bit LocalTime to a Counter.  &#10;&#10; &#60;p>See TEP102 for more details.&#10; @param precision_tag A type indicating the precision of the LocalTime and&#10; Counter being converted.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
+      </documentation>
+      <instance number="0">
+        <component-ref qname="CounterToLocalTimeC"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <module/>
+    </component>
+    <component qname="BootLedsAppC.LigarTimerB" loc="44(BootLedsAppC.LigarTimerB):../../tos/system/TimerMilliC.nc">
+      <documentation loc="33:../../tos/system/TimerMilliC.nc">
+        <short>&#10; The virtualized millisecond timer abstraction.</short>
+        <long>&#10; The virtualized millisecond timer abstraction. Instantiating this &#10; component gives an independent millisecond granularity timer.&#10;&#10; @author Philip Levis&#10; @date   January 16 2006&#10; @see    TEP 102: Timers&#10;</long>
+      </documentation>
+      <instance number="1">
+        <component-ref qname="TimerMilliC"/>
+      </instance>
+      <configuration/>
+    </component>
+    <component qname="BootLedsAppC.LigarTimerC" loc="44(BootLedsAppC.LigarTimerC):../../tos/system/TimerMilliC.nc">
+      <documentation loc="33:../../tos/system/TimerMilliC.nc">
+        <short>&#10; The virtualized millisecond timer abstraction.</short>
+        <long>&#10; The virtualized millisecond timer abstraction. Instantiating this &#10; component gives an independent millisecond granularity timer.&#10;&#10; @author Philip Levis&#10; @date   January 16 2006&#10; @see    TEP 102: Timers&#10;</long>
+      </documentation>
+      <instance number="2">
+        <component-ref qname="TimerMilliC"/>
+      </instance>
+      <configuration/>
     </component>
     <component qname="HplMsp430GeneralIOP" loc="39:../../tos/chips/msp430/pins/HplMsp430GeneralIOP.nc" abstract="" safe="">
       <documentation loc="2:../../tos/chips/msp430/msp430regtypes.h">
@@ -2528,6 +3114,177 @@
         <long>&#10; Implementation of the general-purpose I/O abstraction&#10; for the TI MSP430 microcontroller.&#10;&#10; @author Joe Polastre&#10; @see  Please refer to TEP 117 for more information about this component and its&#10;          intended use.&#10;</long>
       </documentation>
       <parameters>
+      </parameters>
+      <module/>
+    </component>
+    <component qname="TimerMilliC" loc="44:../../tos/system/TimerMilliC.nc" abstract="">
+      <documentation loc="33:../../tos/system/TimerMilliC.nc">
+        <short>&#10; The virtualized millisecond timer abstraction.</short>
+        <long>&#10; The virtualized millisecond timer abstraction. Instantiating this &#10; component gives an independent millisecond granularity timer.&#10;&#10; @author Philip Levis&#10; @date   January 16 2006&#10; @see    TEP 102: Timers&#10;</long>
+      </documentation>
+      <parameters>
+      </parameters>
+      <configuration/>
+    </component>
+    <component qname="AlarmMilli32C" loc="41:../../tos/chips/msp430/timer/AlarmMilli32C.nc" abstract="">
+      <documentation loc="33:../../tos/chips/msp430/timer/AlarmMilli32C.nc">
+        <short>&#10; AlarmMilliC is the alarm for async millisecond alarms&#10;&#10; </short>
+        <long>&#10; AlarmMilliC is the alarm for async millisecond alarms&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10; @see  Please refer to TEP 102 for more information about this component and its&#10;          intended use.&#10;</long>
+      </documentation>
+      <parameters>
+      </parameters>
+      <configuration/>
+    </component>
+    <component qname="Alarm32khz16C" loc="41:../../tos/chips/msp430/timer/Alarm32khz16C.nc" abstract="">
+      <documentation loc="33:../../tos/chips/msp430/timer/Alarm32khz16C.nc">
+        <short>&#10; Alarm32khzC is the alarm for async 32khz alarms&#10;&#10; </short>
+        <long>&#10; Alarm32khzC is the alarm for async 32khz alarms&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10; @see  Please refer to TEP 102 for more information about this component and its&#10;          intended use.&#10;</long>
+      </documentation>
+      <parameters>
+      </parameters>
+      <configuration/>
+    </component>
+    <component qname="Msp430Timer32khzC" loc="37:../../tos/chips/msp430/timer/Msp430Timer32khzC.nc" abstract="">
+      <documentation loc="33:../../tos/chips/msp430/timer/Msp430Timer32khzC.nc">
+        <short>&#10; </short>
+        <long>&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
+      </documentation>
+      <parameters>
+      </parameters>
+      <configuration/>
+    </component>
+    <component qname="Msp430AlarmC" loc="43:../../tos/chips/msp430/timer/Msp430AlarmC.nc" abstract="" safe="">
+      <documentation loc="34:../../tos/chips/msp430/timer/Msp430AlarmC.nc">
+        <short>&#10; Msp430Alarm is a generic component that wraps the MSP430 HPL timers and&#10; compares into a TinyOS Alarm.</short>
+        <long>&#10; Msp430Alarm is a generic component that wraps the MSP430 HPL timers and&#10; compares into a TinyOS Alarm.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10; @see  Please refer to TEP 102 for more information about this component and its&#10;          intended use.&#10;</long>
+      </documentation>
+      <parameters>
+        <typedef name="frequency_tag" ref="0x4089fd40" loc="43:../../tos/chips/msp430/timer/Msp430AlarmC.nc">
+          <component-ref qname="Msp430AlarmC"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="frequency_tag" scoped="" ref="0x4089fd40"/></type-var>
+        </typedef>
+      </parameters>
+      <module/>
+    </component>
+    <component qname="Msp430CounterC" loc="42:../../tos/chips/msp430/timer/Msp430CounterC.nc" abstract="" safe="">
+      <documentation loc="33:../../tos/chips/msp430/timer/Msp430CounterC.nc">
+        <short>&#10; Msp430Counter is a generic component that wraps the MSP430 HPL timers into a&#10; TinyOS Counter.</short>
+        <long>&#10; Msp430Counter is a generic component that wraps the MSP430 HPL timers into a&#10; TinyOS Counter.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10; @see  Please refer to TEP 102 for more information about this component and its&#10;          intended use.&#10;</long>
+      </documentation>
+      <parameters>
+        <typedef name="frequency_tag" ref="0x408b2738" loc="42:../../tos/chips/msp430/timer/Msp430CounterC.nc">
+          <component-ref qname="Msp430CounterC"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="frequency_tag" scoped="" ref="0x408b2738"/></type-var>
+        </typedef>
+      </parameters>
+      <module/>
+    </component>
+    <component qname="TransformCounterC" loc="54:../../tos/lib/timer/TransformCounterC.nc" abstract="" safe="">
+      <documentation loc="34:../../tos/lib/timer/TransformCounterC.nc">
+        <short>&#10; TransformCounterC decreases precision and/or widens an Counter.</short>
+        <long>&#10; TransformCounterC decreases precision and/or widens an Counter.&#10;&#10; &#60;p>See TEP102 for more details.&#10;&#10; @param to_precision_tag A type indicating the precision of the transformed&#10;   Counter.&#10; @param to_size_type The type for the width of the transformed Counter.&#10; @param from_precision_tag A type indicating the precision of the original&#10;   Counter.&#10; @param from_size_type The type for the width of the original Counter.&#10; @param bit_shift_right Original time units will be 2 to the power &#10;   &#60;code>bit_shift_right&#60;/code> larger than transformed time units.&#10; @param upper_count_type A type large enough to store the upper bits --&#10;   those needed above from_size_type after its shift right to fill&#10;   to_size_type.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
+      </documentation>
+      <parameters>
+        <typedef name="to_precision_tag" ref="0x408b5900" loc="55:../../tos/lib/timer/TransformCounterC.nc">
+          <component-ref qname="TransformCounterC"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="to_precision_tag" scoped="" ref="0x408b5900"/></type-var>
+        </typedef>
+        <typedef name="to_size_type" ref="0x408b5d60" loc="56:../../tos/lib/timer/TransformCounterC.nc">
+          <component-ref qname="TransformCounterC"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="to_size_type" scoped="" ref="0x408b5d60"/></type-var>
+        </typedef>
+        <typedef name="from_precision_tag" ref="0x408c1010" loc="57:../../tos/lib/timer/TransformCounterC.nc">
+          <component-ref qname="TransformCounterC"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="from_precision_tag" scoped="" ref="0x408c1010"/></type-var>
+        </typedef>
+        <typedef name="from_size_type" ref="0x408c1480" loc="58:../../tos/lib/timer/TransformCounterC.nc">
+          <component-ref qname="TransformCounterC"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="from_size_type" scoped="" ref="0x408c1480"/></type-var>
+        </typedef>
+        <constant name="bit_shift_right" ref="0x408c16e8" loc="59:../../tos/lib/timer/TransformCounterC.nc">
+          <component-ref qname="TransformCounterC"/>
+          <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
+            <typename><typedef-ref name="uint8_t" ref="0x4003add8"/></typename>
+          </type-int>
+        </constant>
+        <typedef name="upper_count_type" ref="0x408c1b70" loc="60:../../tos/lib/timer/TransformCounterC.nc">
+          <component-ref qname="TransformCounterC"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="upper_count_type" scoped="" ref="0x408c1b70"/></type-var>
+        </typedef>
+      </parameters>
+      <module/>
+    </component>
+    <component qname="TransformAlarmC" loc="51:../../tos/lib/timer/TransformAlarmC.nc" abstract="" safe="">
+      <documentation loc="34:../../tos/lib/timer/TransformAlarmC.nc">
+        <short>&#10; TransformAlarmC decreases precision and/or widens an Alarm.</short>
+        <long>&#10; TransformAlarmC decreases precision and/or widens an Alarm.  An already&#10; widened Counter component is used to help.&#10;&#10; &#60;p>See TEP102 for more details.&#10; @param to_precision_tag A type indicating the precision of the transformed&#10;   Alarm.&#10; @param to_size_type The type for the width of the transformed Alarm.&#10; @param from_precision_tag A type indicating the precision of the original&#10;   Alarm.&#10; @param from_size_type The type for the width of the original Alarm.&#10; @param bit_shift_right Original time units will be 2 to the power &#10;   &#60;code>bit_shift_right&#60;/code> larger than transformed time units.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
+      </documentation>
+      <parameters>
+        <typedef name="to_precision_tag" ref="0x408bc570" loc="52:../../tos/lib/timer/TransformAlarmC.nc">
+          <component-ref qname="TransformAlarmC"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="to_precision_tag" scoped="" ref="0x408bc570"/></type-var>
+        </typedef>
+        <typedef name="to_size_type" ref="0x408bc9d0" loc="53:../../tos/lib/timer/TransformAlarmC.nc">
+          <component-ref qname="TransformAlarmC"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="to_size_type" scoped="" ref="0x408bc9d0"/></type-var>
+        </typedef>
+        <typedef name="from_precision_tag" ref="0x408bcc38" loc="54:../../tos/lib/timer/TransformAlarmC.nc">
+          <component-ref qname="TransformAlarmC"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="from_precision_tag" scoped="" ref="0x408bcc38"/></type-var>
+        </typedef>
+        <typedef name="from_size_type" ref="0x408e70d8" loc="55:../../tos/lib/timer/TransformAlarmC.nc">
+          <component-ref qname="TransformAlarmC"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="from_size_type" scoped="" ref="0x408e70d8"/></type-var>
+        </typedef>
+        <constant name="bit_shift_right" ref="0x408e7340" loc="56:../../tos/lib/timer/TransformAlarmC.nc">
+          <component-ref qname="TransformAlarmC"/>
+          <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
+            <typename><typedef-ref name="uint8_t" ref="0x4003add8"/></typename>
+          </type-int>
+        </constant>
+      </parameters>
+      <module/>
+    </component>
+    <component qname="AlarmToTimerC" loc="46:../../tos/lib/timer/AlarmToTimerC.nc" abstract="" safe="">
+      <documentation loc="36:../../tos/lib/timer/AlarmToTimerC.nc">
+        <short>&#10; AlarmToTimerC converts a 32-bit Alarm to a Timer.</short>
+        <long>&#10; AlarmToTimerC converts a 32-bit Alarm to a Timer.  &#10;&#10; &#60;p>See TEP102 for more details.&#10; @param precision_tag A type indicating the precision of the Alarm and&#10; Timer being converted.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
+      </documentation>
+      <parameters>
+        <typedef name="precision_tag" ref="0x40905910" loc="46:../../tos/lib/timer/AlarmToTimerC.nc">
+          <component-ref qname="AlarmToTimerC"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="precision_tag" scoped="" ref="0x40905910"/></type-var>
+        </typedef>
+      </parameters>
+      <module/>
+    </component>
+    <component qname="VirtualizeTimerC" loc="46:../../tos/lib/timer/VirtualizeTimerC.nc" abstract="" safe="">
+      <documentation loc="34:../../tos/lib/timer/VirtualizeTimerC.nc">
+        <short>&#10; VirtualizeTimerC uses a single Timer to create up to 255 virtual timers.</short>
+        <long>&#10; VirtualizeTimerC uses a single Timer to create up to 255 virtual timers.&#10;&#10; &#60;p>See TEP102 for more details.&#10;&#10; @param precision_tag A type indicating the precision of the Timer being &#10;   virtualized.&#10; @param max_timers Number of virtual timers to create.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
+      </documentation>
+      <parameters>
+        <typedef name="precision_tag" ref="0x40922010" loc="46:../../tos/lib/timer/VirtualizeTimerC.nc">
+          <component-ref qname="VirtualizeTimerC"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="precision_tag" scoped="" ref="0x40922010"/></type-var>
+        </typedef>
+        <constant name="max_timers" ref="0x409221f0" loc="46:../../tos/lib/timer/VirtualizeTimerC.nc">
+          <component-ref qname="VirtualizeTimerC"/>
+          <type-int cname="int" size="I:2" alignment="I:2"></type-int>
+        </constant>
+      </parameters>
+      <module/>
+    </component>
+    <component qname="CounterToLocalTimeC" loc="46:../../tos/lib/timer/CounterToLocalTimeC.nc" abstract="" safe="">
+      <documentation loc="36:../../tos/lib/timer/CounterToLocalTimeC.nc">
+        <short>&#10; CounterToLocalTimeC converts a 32-bit LocalTime to a Counter.</short>
+        <long>&#10; CounterToLocalTimeC converts a 32-bit LocalTime to a Counter.  &#10;&#10; &#60;p>See TEP102 for more details.&#10; @param precision_tag A type indicating the precision of the LocalTime and&#10; Counter being converted.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
+      </documentation>
+      <parameters>
+        <typedef name="precision_tag" ref="0x409348e0" loc="46:../../tos/lib/timer/CounterToLocalTimeC.nc">
+          <component-ref qname="CounterToLocalTimeC"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="precision_tag" scoped="" ref="0x409348e0"/></type-var>
+        </typedef>
       </parameters>
       <module/>
     </component>
@@ -7505,34 +8262,898 @@
         <function-ref name="runNextTask" scoped="" ref="0x405d10f0"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="Boot" ref="0x40845180" loc="4:BootLedsC.nc">
+    <interface provided="0" name="Boot" ref="0x40843340" loc="6:BootLedsC.nc">
       <component-ref qname="BootLedsC"/>
-      <type-interface size="I:2" alignment="I:2"><interface-ref name="Boot" scoped="" ref="0x40845180"/></type-interface>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Boot" scoped="" ref="0x40843340"/></type-interface>
       <instance>
         <interfacedef-ref qname="Boot"/>
       </instance>
       <interface-functions>
-        <function-ref name="booted" scoped="" ref="0x40845358"/>
+        <function-ref name="booted" scoped="" ref="0x40843518"/>
       </interface-functions>
     </interface>
-    <interface provided="0" name="Leds" ref="0x405e9520" loc="3:BootLedsC.nc">
+    <interface provided="0" name="LigarTimerC" ref="0x40852968" loc="9:BootLedsC.nc">
       <component-ref qname="BootLedsC"/>
-      <type-interface size="I:2" alignment="I:2"><interface-ref name="Leds" scoped="" ref="0x405e9520"/></type-interface>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="LigarTimerC" scoped="" ref="0x40852968"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Timer"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x408504c8"/>
+        <function-ref name="fired" scoped="" ref="0x40851768"/>
+        <function-ref name="startPeriodicAt" scoped="" ref="0x40851e70"/>
+        <function-ref name="isOneShot" scoped="" ref="0x40851c18"/>
+        <function-ref name="getdt" scoped="" ref="0x40850978"/>
+        <function-ref name="gett0" scoped="" ref="0x40850720"/>
+        <function-ref name="isRunning" scoped="" ref="0x408519c0"/>
+        <function-ref name="startPeriodic" scoped="" ref="0x40851010"/>
+        <function-ref name="startOneShotAt" scoped="" ref="0x408501a8"/>
+        <function-ref name="startOneShot" scoped="" ref="0x40851290"/>
+        <function-ref name="stop" scoped="" ref="0x40851510"/>
+      </interface-functions>
+    </interface>
+    <interface provided="0" name="LigarTimerA" ref="0x408552a0" loc="7:BootLedsC.nc">
+      <component-ref qname="BootLedsC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="LigarTimerA" scoped="" ref="0x408552a0"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Timer"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x40842d90"/>
+        <function-ref name="fired" scoped="" ref="0x40842048"/>
+        <function-ref name="startPeriodicAt" scoped="" ref="0x40842750"/>
+        <function-ref name="isOneShot" scoped="" ref="0x408424f8"/>
+        <function-ref name="getdt" scoped="" ref="0x40841268"/>
+        <function-ref name="gett0" scoped="" ref="0x40841010"/>
+        <function-ref name="isRunning" scoped="" ref="0x408422a0"/>
+        <function-ref name="startPeriodic" scoped="" ref="0x408558c8"/>
+        <function-ref name="startOneShotAt" scoped="" ref="0x40842a70"/>
+        <function-ref name="startOneShot" scoped="" ref="0x40855b48"/>
+        <function-ref name="stop" scoped="" ref="0x40855dc8"/>
+      </interface-functions>
+    </interface>
+    <interface provided="0" name="Leds" ref="0x408456b8" loc="5:BootLedsC.nc">
+      <component-ref qname="BootLedsC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Leds" scoped="" ref="0x408456b8"/></type-interface>
       <instance>
         <interfacedef-ref qname="Leds"/>
       </instance>
       <interface-functions>
-        <function-ref name="led0Off" scoped="" ref="0x405e96f8"/>
-        <function-ref name="led0Toggle" scoped="" ref="0x405e97d8"/>
-        <function-ref name="led1On" scoped="" ref="0x405e98b8"/>
-        <function-ref name="led1Toggle" scoped="" ref="0x405e9998"/>
-        <function-ref name="led2Toggle" scoped="" ref="0x405e9a78"/>
-        <function-ref name="get" scoped="" ref="0x405e9b58"/>
-        <function-ref name="led1Off" scoped="" ref="0x405e9c38"/>
-        <function-ref name="led2Off" scoped="" ref="0x40845010"/>
-        <function-ref name="set" scoped="" ref="0x405e9d18"/>
-        <function-ref name="led0On" scoped="" ref="0x405e9df8"/>
-        <function-ref name="led2On" scoped="" ref="0x405e9ed8"/>
+        <function-ref name="led0Off" scoped="" ref="0x40845890"/>
+        <function-ref name="led0Toggle" scoped="" ref="0x40845970"/>
+        <function-ref name="led1On" scoped="" ref="0x40845a50"/>
+        <function-ref name="led1Toggle" scoped="" ref="0x40845b30"/>
+        <function-ref name="led2Toggle" scoped="" ref="0x40845c10"/>
+        <function-ref name="get" scoped="" ref="0x40845cf0"/>
+        <function-ref name="led1Off" scoped="" ref="0x40845dd0"/>
+        <function-ref name="led2Off" scoped="" ref="0x408431d0"/>
+        <function-ref name="set" scoped="" ref="0x40845eb0"/>
+        <function-ref name="led0On" scoped="" ref="0x40843010"/>
+        <function-ref name="led2On" scoped="" ref="0x408430f0"/>
+      </interface-functions>
+    </interface>
+    <interface provided="0" name="LigarTimerB" ref="0x40841610" loc="8:BootLedsC.nc">
+      <component-ref qname="BootLedsC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="LigarTimerB" scoped="" ref="0x40841610"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Timer"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x40852110"/>
+        <function-ref name="fired" scoped="" ref="0x408543a8"/>
+        <function-ref name="startPeriodicAt" scoped="" ref="0x40854ab0"/>
+        <function-ref name="isOneShot" scoped="" ref="0x40854858"/>
+        <function-ref name="getdt" scoped="" ref="0x408525c0"/>
+        <function-ref name="gett0" scoped="" ref="0x40852368"/>
+        <function-ref name="isRunning" scoped="" ref="0x40854600"/>
+        <function-ref name="startPeriodic" scoped="" ref="0x40841c38"/>
+        <function-ref name="startOneShotAt" scoped="" ref="0x40854dd0"/>
+        <function-ref name="startOneShot" scoped="" ref="0x40841eb8"/>
+        <function-ref name="stop" scoped="" ref="0x40854150"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Timer" ref="0x4084ccd8" loc="45:../../tos/system/TimerMilliC.nc">
+      <component-ref qname="BootLedsAppC.LigarTimerA"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Timer" scoped="" ref="0x4084ccd8"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Timer"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x4085f8a8"/>
+        <function-ref name="fired" scoped="" ref="0x40864aa8"/>
+        <function-ref name="startPeriodicAt" scoped="" ref="0x4085f268"/>
+        <function-ref name="isOneShot" scoped="" ref="0x4085f010"/>
+        <function-ref name="getdt" scoped="" ref="0x4085fd58"/>
+        <function-ref name="gett0" scoped="" ref="0x4085fb00"/>
+        <function-ref name="isRunning" scoped="" ref="0x40864d00"/>
+        <function-ref name="startPeriodic" scoped="" ref="0x40864350"/>
+        <function-ref name="startOneShotAt" scoped="" ref="0x4085f588"/>
+        <function-ref name="startOneShot" scoped="" ref="0x408645d0"/>
+        <function-ref name="stop" scoped="" ref="0x40864850"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="TimerMilli" ref="0x40861cc8" loc="49:../../tos/system/TimerMilliP.nc">
+      <component-ref qname="TimerMilliP"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="TimerMilli" scoped="" ref="0x40861cc8"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Timer"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <interface-parameters>
+        <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
+          <typename><typedef-ref name="uint8_t" ref="0x4003add8"/></typename>
+        </type-int>
+      </interface-parameters>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x4085c7c8"/>
+        <function-ref name="fired" scoped="" ref="0x4085ea68"/>
+        <function-ref name="startPeriodicAt" scoped="" ref="0x4085c188"/>
+        <function-ref name="isOneShot" scoped="" ref="0x4085ef18"/>
+        <function-ref name="getdt" scoped="" ref="0x4085cc78"/>
+        <function-ref name="gett0" scoped="" ref="0x4085ca20"/>
+        <function-ref name="isRunning" scoped="" ref="0x4085ecc0"/>
+        <function-ref name="startPeriodic" scoped="" ref="0x4085e310"/>
+        <function-ref name="startOneShotAt" scoped="" ref="0x4085c4a8"/>
+        <function-ref name="startOneShot" scoped="" ref="0x4085e590"/>
+        <function-ref name="stop" scoped="" ref="0x4085e810"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="TimerMilli" ref="0x4085bd48" loc="46:../../tos/chips/msp430/timer/HilTimerMilliC.nc">
+      <component-ref qname="HilTimerMilliC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="TimerMilli" scoped="" ref="0x4085bd48"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Timer"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <interface-parameters>
+        <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
+          <typename><typedef-ref name="uint8_t" ref="0x4003add8"/></typename>
+        </type-int>
+      </interface-parameters>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x408728a8"/>
+        <function-ref name="fired" scoped="" ref="0x40874b18"/>
+        <function-ref name="startPeriodicAt" scoped="" ref="0x40872268"/>
+        <function-ref name="isOneShot" scoped="" ref="0x40872010"/>
+        <function-ref name="getdt" scoped="" ref="0x40872d58"/>
+        <function-ref name="gett0" scoped="" ref="0x40872b00"/>
+        <function-ref name="isRunning" scoped="" ref="0x40874d70"/>
+        <function-ref name="startPeriodic" scoped="" ref="0x408743c0"/>
+        <function-ref name="startOneShotAt" scoped="" ref="0x40872588"/>
+        <function-ref name="startOneShot" scoped="" ref="0x40874640"/>
+        <function-ref name="stop" scoped="" ref="0x408748c0"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="LocalTime" ref="0x40871da8" loc="47:../../tos/chips/msp430/timer/HilTimerMilliC.nc">
+      <component-ref qname="HilTimerMilliC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="LocalTime" scoped="" ref="0x40871da8"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="LocalTime"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="get" scoped="" ref="0x40870400"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Init" ref="0x4085b598" loc="45:../../tos/chips/msp430/timer/HilTimerMilliC.nc">
+      <component-ref qname="HilTimerMilliC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Init" scoped="" ref="0x4085b598"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Init"/>
+      </instance>
+      <interface-functions>
+        <function-ref name="init" scoped="" ref="0x4085b770"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Alarm" ref="0x4086e468" loc="44:../../tos/chips/msp430/timer/AlarmMilli32C.nc">
+      <component-ref qname="HilTimerMilliC.AlarmMilli32C"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Alarm" scoped="" ref="0x4086e468"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Alarm"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+          <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+            <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+          </type-int>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x408e8940"/>
+        <function-ref name="fired" scoped="" ref="0x408e8110"/>
+        <function-ref name="startAt" scoped="" ref="0x408e8600"/>
+        <function-ref name="isRunning" scoped="" ref="0x408e8388"/>
+        <function-ref name="getAlarm" scoped="" ref="0x408e8bb8"/>
+        <function-ref name="start" scoped="" ref="0x4086ebb8"/>
+        <function-ref name="stop" scoped="" ref="0x4086ee58"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Init" ref="0x4086e010" loc="43:../../tos/chips/msp430/timer/AlarmMilli32C.nc">
+      <component-ref qname="HilTimerMilliC.AlarmMilli32C"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Init" scoped="" ref="0x4086e010"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Init"/>
+      </instance>
+      <interface-functions>
+        <function-ref name="init" scoped="" ref="0x4086e1e8"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Alarm" ref="0x40bca950" loc="44:../../tos/chips/msp430/timer/Alarm32khz16C.nc">
+      <component-ref qname="HilTimerMilliC.AlarmMilli32C.AlarmFrom"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Alarm" scoped="" ref="0x40bca950"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Alarm"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9e40"/>
+            <typename><typedef-ref name="T32khz" ref="0x40845048"/></typename>
+          </type-tag>
+          <type-int cname="unsigned int" unsigned="" size="I:2" alignment="I:2">
+            <typename><typedef-ref name="uint16_t" ref="0x401eb010"/></typename>
+          </type-int>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x40bc9e00"/>
+        <function-ref name="fired" scoped="" ref="0x40bc95d0"/>
+        <function-ref name="startAt" scoped="" ref="0x40bc9ac0"/>
+        <function-ref name="isRunning" scoped="" ref="0x40bc9848"/>
+        <function-ref name="getAlarm" scoped="" ref="0x40bf1088"/>
+        <function-ref name="start" scoped="" ref="0x40bc90b8"/>
+        <function-ref name="stop" scoped="" ref="0x40bc9358"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Init" ref="0x40bca4f8" loc="43:../../tos/chips/msp430/timer/Alarm32khz16C.nc">
+      <component-ref qname="HilTimerMilliC.AlarmMilli32C.AlarmFrom"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Init" scoped="" ref="0x40bca4f8"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Init"/>
+      </instance>
+      <interface-functions>
+        <function-ref name="init" scoped="" ref="0x40bca6d0"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Msp430Compare" ref="0x40be6870" loc="41:../../tos/chips/msp430/timer/Msp430Timer32khzC.nc">
+      <component-ref qname="HilTimerMilliC.AlarmMilli32C.AlarmFrom.Msp430Timer"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Msp430Compare" scoped="" ref="0x40be6870"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Msp430Compare"/>
+      </instance>
+      <interface-functions>
+        <function-ref name="getEvent" scoped="" ref="0x40be6a48"/>
+        <function-ref name="setEvent" scoped="" ref="0x40be6b28"/>
+        <function-ref name="setEventFromPrev" scoped="" ref="0x40be6c08"/>
+        <function-ref name="setEventFromNow" scoped="" ref="0x40be6ce8"/>
+        <function-ref name="fired" scoped="" ref="0x40be6dc8"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Msp430Timer" ref="0x40be71b0" loc="39:../../tos/chips/msp430/timer/Msp430Timer32khzC.nc">
+      <component-ref qname="HilTimerMilliC.AlarmMilli32C.AlarmFrom.Msp430Timer"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Msp430Timer" scoped="" ref="0x40be71b0"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Msp430Timer"/>
+      </instance>
+      <interface-functions>
+        <function-ref name="clear" scoped="" ref="0x40be7388"/>
+        <function-ref name="setClockSource" scoped="" ref="0x40be7468"/>
+        <function-ref name="enableEvents" scoped="" ref="0x40be7548"/>
+        <function-ref name="get" scoped="" ref="0x40be7628"/>
+        <function-ref name="disableEvents" scoped="" ref="0x40be7708"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x40be77e8"/>
+        <function-ref name="getMode" scoped="" ref="0x40be78c8"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x40be79a8"/>
+        <function-ref name="overflow" scoped="" ref="0x40be7a88"/>
+        <function-ref name="setMode" scoped="" ref="0x40be7b68"/>
+        <function-ref name="setInputDivider" scoped="" ref="0x40be7c48"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Msp430TimerControl" ref="0x40be7da8" loc="40:../../tos/chips/msp430/timer/Msp430Timer32khzC.nc">
+      <component-ref qname="HilTimerMilliC.AlarmMilli32C.AlarmFrom.Msp430Timer"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Msp430TimerControl" scoped="" ref="0x40be7da8"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Msp430TimerControl"/>
+      </instance>
+      <interface-functions>
+        <function-ref name="setControlAsCapture" scoped="" ref="0x40be6010"/>
+        <function-ref name="getControl" scoped="" ref="0x40be60f0"/>
+        <function-ref name="enableEvents" scoped="" ref="0x40be61d0"/>
+        <function-ref name="areEventsEnabled" scoped="" ref="0x40be62b0"/>
+        <function-ref name="setControlAsCompare" scoped="" ref="0x40be6390"/>
+        <function-ref name="disableEvents" scoped="" ref="0x40be6470"/>
+        <function-ref name="isInterruptPending" scoped="" ref="0x40be6550"/>
+        <function-ref name="clearPendingInterrupt" scoped="" ref="0x40be6630"/>
+        <function-ref name="setControl" scoped="" ref="0x40be6710"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Msp430Compare" ref="0x40890698" loc="52:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <component-ref qname="Msp430Timer32khzMapC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Msp430Compare" scoped="" ref="0x40890698"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Msp430Compare"/>
+      </instance>
+      <interface-parameters>
+        <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
+          <typename><typedef-ref name="uint8_t" ref="0x4003add8"/></typename>
+        </type-int>
+      </interface-parameters>
+      <interface-functions>
+        <function-ref name="getEvent" scoped="" ref="0x40890870"/>
+        <function-ref name="setEvent" scoped="" ref="0x40890950"/>
+        <function-ref name="setEventFromPrev" scoped="" ref="0x40890a30"/>
+        <function-ref name="setEventFromNow" scoped="" ref="0x40890b10"/>
+        <function-ref name="fired" scoped="" ref="0x40890bf0"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Msp430Timer" ref="0x408798e8" loc="50:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <component-ref qname="Msp430Timer32khzMapC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Msp430Timer" scoped="" ref="0x408798e8"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Msp430Timer"/>
+      </instance>
+      <interface-parameters>
+        <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
+          <typename><typedef-ref name="uint8_t" ref="0x4003add8"/></typename>
+        </type-int>
+      </interface-parameters>
+      <interface-functions>
+        <function-ref name="clear" scoped="" ref="0x40879ac0"/>
+        <function-ref name="setClockSource" scoped="" ref="0x40879ba0"/>
+        <function-ref name="enableEvents" scoped="" ref="0x40879c80"/>
+        <function-ref name="get" scoped="" ref="0x40879d60"/>
+        <function-ref name="disableEvents" scoped="" ref="0x40879e40"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x40879f20"/>
+        <function-ref name="getMode" scoped="" ref="0x40892018"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x408920f8"/>
+        <function-ref name="overflow" scoped="" ref="0x408921d8"/>
+        <function-ref name="setMode" scoped="" ref="0x408922b8"/>
+        <function-ref name="setInputDivider" scoped="" ref="0x40892398"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Msp430TimerControl" ref="0x40892890" loc="51:../../tos/platforms/telosa/Msp430Timer32khzMapC.nc">
+      <component-ref qname="Msp430Timer32khzMapC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Msp430TimerControl" scoped="" ref="0x40892890"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Msp430TimerControl"/>
+      </instance>
+      <interface-parameters>
+        <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
+          <typename><typedef-ref name="uint8_t" ref="0x4003add8"/></typename>
+        </type-int>
+      </interface-parameters>
+      <interface-functions>
+        <function-ref name="setControlAsCapture" scoped="" ref="0x40892a68"/>
+        <function-ref name="getControl" scoped="" ref="0x40892b48"/>
+        <function-ref name="enableEvents" scoped="" ref="0x40892c28"/>
+        <function-ref name="areEventsEnabled" scoped="" ref="0x40892d08"/>
+        <function-ref name="setControlAsCompare" scoped="" ref="0x40892de8"/>
+        <function-ref name="disableEvents" scoped="" ref="0x40892ec8"/>
+        <function-ref name="isInterruptPending" scoped="" ref="0x40890010"/>
+        <function-ref name="clearPendingInterrupt" scoped="" ref="0x408900f0"/>
+        <function-ref name="setControl" scoped="" ref="0x408901d0"/>
+      </interface-functions>
+    </interface>
+    <interface provided="0" name="Msp430Compare" ref="0x40be1250" loc="49:../../tos/chips/msp430/timer/Msp430AlarmC.nc">
+      <component-ref qname="HilTimerMilliC.AlarmMilli32C.AlarmFrom.Msp430Alarm"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Msp430Compare" scoped="" ref="0x40be1250"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Msp430Compare"/>
+      </instance>
+      <interface-functions>
+        <function-ref name="getEvent" scoped="" ref="0x40be1428"/>
+        <function-ref name="setEvent" scoped="" ref="0x40be1508"/>
+        <function-ref name="setEventFromPrev" scoped="" ref="0x40be15e8"/>
+        <function-ref name="setEventFromNow" scoped="" ref="0x40be16c8"/>
+        <function-ref name="fired" scoped="" ref="0x40be17a8"/>
+      </interface-functions>
+    </interface>
+    <interface provided="0" name="Msp430Timer" ref="0x40be3b38" loc="47:../../tos/chips/msp430/timer/Msp430AlarmC.nc">
+      <component-ref qname="HilTimerMilliC.AlarmMilli32C.AlarmFrom.Msp430Alarm"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Msp430Timer" scoped="" ref="0x40be3b38"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Msp430Timer"/>
+      </instance>
+      <interface-functions>
+        <function-ref name="clear" scoped="" ref="0x40be3d10"/>
+        <function-ref name="setClockSource" scoped="" ref="0x40be3df0"/>
+        <function-ref name="enableEvents" scoped="" ref="0x40be3ed0"/>
+        <function-ref name="get" scoped="" ref="0x40be2010"/>
+        <function-ref name="disableEvents" scoped="" ref="0x40be20f0"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x40be21d0"/>
+        <function-ref name="getMode" scoped="" ref="0x40be22b0"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x40be2390"/>
+        <function-ref name="overflow" scoped="" ref="0x40be2470"/>
+        <function-ref name="setMode" scoped="" ref="0x40be2550"/>
+        <function-ref name="setInputDivider" scoped="" ref="0x40be2630"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Alarm" ref="0x40be41d0" loc="46:../../tos/chips/msp430/timer/Msp430AlarmC.nc">
+      <component-ref qname="HilTimerMilliC.AlarmMilli32C.AlarmFrom.Msp430Alarm"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Alarm" scoped="" ref="0x40be41d0"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Alarm"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9e40"/>
+            <typename><typedef-ref name="T32khz" ref="0x40845048"/></typename>
+          </type-tag>
+          <type-int cname="unsigned int" unsigned="" size="I:2" alignment="I:2">
+            <typename><typedef-ref name="uint16_t" ref="0x401eb010"/></typename>
+          </type-int>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x40be3690"/>
+        <function-ref name="fired" scoped="" ref="0x40be4e38"/>
+        <function-ref name="startAt" scoped="" ref="0x40be3350"/>
+        <function-ref name="isRunning" scoped="" ref="0x40be30d8"/>
+        <function-ref name="getAlarm" scoped="" ref="0x40be3908"/>
+        <function-ref name="start" scoped="" ref="0x40be4920"/>
+        <function-ref name="stop" scoped="" ref="0x40be4bc0"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Init" ref="0x40be5d30" loc="45:../../tos/chips/msp430/timer/Msp430AlarmC.nc">
+      <component-ref qname="HilTimerMilliC.AlarmMilli32C.AlarmFrom.Msp430Alarm"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Init" scoped="" ref="0x40be5d30"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Init"/>
+      </instance>
+      <interface-functions>
+        <function-ref name="init" scoped="" ref="0x40be5f08"/>
+      </interface-functions>
+    </interface>
+    <interface provided="0" name="Msp430TimerControl" ref="0x40be2790" loc="48:../../tos/chips/msp430/timer/Msp430AlarmC.nc">
+      <component-ref qname="HilTimerMilliC.AlarmMilli32C.AlarmFrom.Msp430Alarm"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Msp430TimerControl" scoped="" ref="0x40be2790"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Msp430TimerControl"/>
+      </instance>
+      <interface-functions>
+        <function-ref name="setControlAsCapture" scoped="" ref="0x40be2968"/>
+        <function-ref name="getControl" scoped="" ref="0x40be2a48"/>
+        <function-ref name="enableEvents" scoped="" ref="0x40be2b28"/>
+        <function-ref name="areEventsEnabled" scoped="" ref="0x40be2c08"/>
+        <function-ref name="setControlAsCompare" scoped="" ref="0x40be2ce8"/>
+        <function-ref name="disableEvents" scoped="" ref="0x40be2dc8"/>
+        <function-ref name="isInterruptPending" scoped="" ref="0x40be2ea8"/>
+        <function-ref name="clearPendingInterrupt" scoped="" ref="0x40be1010"/>
+        <function-ref name="setControl" scoped="" ref="0x40be10f0"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Counter" ref="0x408b9088" loc="43:../../tos/chips/msp430/timer/CounterMilli32C.nc">
+      <component-ref qname="CounterMilli32C"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Counter" scoped="" ref="0x408b9088"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Counter"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+          <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+            <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+          </type-int>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="get" scoped="" ref="0x408b97d8"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x408b9cc8"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x408b9a50"/>
+        <function-ref name="overflow" scoped="" ref="0x408b8010"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Msp430Counter32khz" ref="0x408b8c10" loc="43:../../tos/chips/msp430/timer/Msp430Counter32khzC.nc">
+      <component-ref qname="Msp430Counter32khzC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Msp430Counter32khz" scoped="" ref="0x408b8c10"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Counter"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9e40"/>
+            <typename><typedef-ref name="T32khz" ref="0x40845048"/></typename>
+          </type-tag>
+          <type-int cname="unsigned int" unsigned="" size="I:2" alignment="I:2">
+            <typename><typedef-ref name="uint16_t" ref="0x401eb010"/></typename>
+          </type-int>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="get" scoped="" ref="0x408b3380"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x408b3870"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x408b35f8"/>
+        <function-ref name="overflow" scoped="" ref="0x408b3ae8"/>
+      </interface-functions>
+    </interface>
+    <interface provided="0" name="Msp430Timer" ref="0x408b0730" loc="45:../../tos/chips/msp430/timer/Msp430CounterC.nc">
+      <component-ref qname="Msp430Counter32khzC.Counter"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Msp430Timer" scoped="" ref="0x408b0730"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Msp430Timer"/>
+      </instance>
+      <interface-functions>
+        <function-ref name="clear" scoped="" ref="0x408b0908"/>
+        <function-ref name="setClockSource" scoped="" ref="0x408b09e8"/>
+        <function-ref name="enableEvents" scoped="" ref="0x408b0ac8"/>
+        <function-ref name="get" scoped="" ref="0x408b0ba8"/>
+        <function-ref name="disableEvents" scoped="" ref="0x408b0c88"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x408b0d68"/>
+        <function-ref name="getMode" scoped="" ref="0x408b0e48"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x408b0f28"/>
+        <function-ref name="overflow" scoped="" ref="0x408c4018"/>
+        <function-ref name="setMode" scoped="" ref="0x408c40f8"/>
+        <function-ref name="setInputDivider" scoped="" ref="0x408c41d8"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Counter" ref="0x408b1578" loc="44:../../tos/chips/msp430/timer/Msp430CounterC.nc">
+      <component-ref qname="Msp430Counter32khzC.Counter"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Counter" scoped="" ref="0x408b1578"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Counter"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9e40"/>
+            <typename><typedef-ref name="T32khz" ref="0x40845048"/></typename>
+          </type-tag>
+          <type-int cname="unsigned int" unsigned="" size="I:2" alignment="I:2">
+            <typename><typedef-ref name="uint16_t" ref="0x401eb010"/></typename>
+          </type-int>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="get" scoped="" ref="0x408b1cc8"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x408b0288"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x408b0010"/>
+        <function-ref name="overflow" scoped="" ref="0x408b0500"/>
+      </interface-functions>
+    </interface>
+    <interface provided="0" name="CounterFrom" ref="0x408c25f8" loc="63:../../tos/lib/timer/TransformCounterC.nc">
+      <component-ref qname="CounterMilli32C.Transform"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="CounterFrom" scoped="" ref="0x408c25f8"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Counter"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9e40"/>
+            <typename><typedef-ref name="T32khz" ref="0x40845048"/></typename>
+          </type-tag>
+          <type-int cname="unsigned int" unsigned="" size="I:2" alignment="I:2">
+            <typename><typedef-ref name="uint16_t" ref="0x401eb010"/></typename>
+          </type-int>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="get" scoped="" ref="0x408c2d48"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x408ce288"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x408ce010"/>
+        <function-ref name="overflow" scoped="" ref="0x408ce500"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Counter" ref="0x408c3320" loc="62:../../tos/lib/timer/TransformCounterC.nc">
+      <component-ref qname="CounterMilli32C.Transform"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Counter" scoped="" ref="0x408c3320"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Counter"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+          <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+            <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+          </type-int>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="get" scoped="" ref="0x408c3a70"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x408c2010"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x408c3ce8"/>
+        <function-ref name="overflow" scoped="" ref="0x408c2288"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Alarm" ref="0x40bf0358" loc="61:../../tos/lib/timer/TransformAlarmC.nc">
+      <component-ref qname="HilTimerMilliC.AlarmMilli32C.Transform"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Alarm" scoped="" ref="0x40bf0358"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Alarm"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+          <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+            <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+          </type-int>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x40bef840"/>
+        <function-ref name="fired" scoped="" ref="0x40bef010"/>
+        <function-ref name="startAt" scoped="" ref="0x40bef500"/>
+        <function-ref name="isRunning" scoped="" ref="0x40bef288"/>
+        <function-ref name="getAlarm" scoped="" ref="0x40befab8"/>
+        <function-ref name="start" scoped="" ref="0x40bf0aa8"/>
+        <function-ref name="stop" scoped="" ref="0x40bf0d48"/>
+      </interface-functions>
+    </interface>
+    <interface provided="0" name="AlarmFrom" ref="0x40bec078" loc="73:../../tos/lib/timer/TransformAlarmC.nc">
+      <component-ref qname="HilTimerMilliC.AlarmMilli32C.Transform"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="AlarmFrom" scoped="" ref="0x40bec078"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Alarm"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9e40"/>
+            <typename><typedef-ref name="T32khz" ref="0x40845048"/></typename>
+          </type-tag>
+          <type-int cname="unsigned int" unsigned="" size="I:2" alignment="I:2">
+            <typename><typedef-ref name="uint16_t" ref="0x401eb010"/></typename>
+          </type-int>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x40beb5c8"/>
+        <function-ref name="fired" scoped="" ref="0x40becce0"/>
+        <function-ref name="startAt" scoped="" ref="0x40beb288"/>
+        <function-ref name="isRunning" scoped="" ref="0x40beb010"/>
+        <function-ref name="getAlarm" scoped="" ref="0x40beb840"/>
+        <function-ref name="start" scoped="" ref="0x40bec7c8"/>
+        <function-ref name="stop" scoped="" ref="0x40beca68"/>
+      </interface-functions>
+    </interface>
+    <interface provided="0" name="Counter" ref="0x40befe08" loc="68:../../tos/lib/timer/TransformAlarmC.nc">
+      <component-ref qname="HilTimerMilliC.AlarmMilli32C.Transform"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Counter" scoped="" ref="0x40befe08"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Counter"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+          <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+            <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+          </type-int>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="get" scoped="" ref="0x40bed570"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x40beda60"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x40bed7e8"/>
+        <function-ref name="overflow" scoped="" ref="0x40bedcd8"/>
+      </interface-functions>
+    </interface>
+    <interface provided="0" name="fired" ref="0x409099a8" loc="74:../../tos/lib/timer/AlarmToTimerC.nc">
+      <component-ref qname="HilTimerMilliC.AlarmToTimerC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="fired" scoped="" ref="0x409099a8"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="TaskBasic"/>
+      </instance>
+      <interface-functions>
+        <function-ref name="postTask" scoped="" ref="0x40909b80"/>
+        <function-ref name="runTask" scoped="" ref="0x40909c60"/>
+      </interface-functions>
+    </interface>
+    <interface provided="0" name="Alarm" ref="0x4090a010" loc="49:../../tos/lib/timer/AlarmToTimerC.nc">
+      <component-ref qname="HilTimerMilliC.AlarmToTimerC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Alarm" scoped="" ref="0x4090a010"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Alarm"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+          <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+            <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+          </type-int>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x409094e0"/>
+        <function-ref name="fired" scoped="" ref="0x4090ac78"/>
+        <function-ref name="startAt" scoped="" ref="0x409091a0"/>
+        <function-ref name="isRunning" scoped="" ref="0x4090aef0"/>
+        <function-ref name="getAlarm" scoped="" ref="0x40909758"/>
+        <function-ref name="start" scoped="" ref="0x4090a760"/>
+        <function-ref name="stop" scoped="" ref="0x4090aa00"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Timer" ref="0x40904cb0" loc="48:../../tos/lib/timer/AlarmToTimerC.nc">
+      <component-ref qname="HilTimerMilliC.AlarmToTimerC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Timer" scoped="" ref="0x40904cb0"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Timer"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x4090b7c0"/>
+        <function-ref name="fired" scoped="" ref="0x4090ca40"/>
+        <function-ref name="startPeriodicAt" scoped="" ref="0x4090b180"/>
+        <function-ref name="isOneShot" scoped="" ref="0x4090cef0"/>
+        <function-ref name="getdt" scoped="" ref="0x4090bc70"/>
+        <function-ref name="gett0" scoped="" ref="0x4090ba18"/>
+        <function-ref name="isRunning" scoped="" ref="0x4090cc98"/>
+        <function-ref name="startPeriodic" scoped="" ref="0x4090c2e8"/>
+        <function-ref name="startOneShotAt" scoped="" ref="0x4090b4a0"/>
+        <function-ref name="startOneShot" scoped="" ref="0x4090c568"/>
+        <function-ref name="stop" scoped="" ref="0x4090c7e8"/>
+      </interface-functions>
+    </interface>
+    <interface provided="0" name="updateFromTimer" ref="0x40935560" loc="71:../../tos/lib/timer/VirtualizeTimerC.nc">
+      <component-ref qname="HilTimerMilliC.VirtualizeTimerC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="updateFromTimer" scoped="" ref="0x40935560"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="TaskBasic"/>
+      </instance>
+      <interface-functions>
+        <function-ref name="postTask" scoped="" ref="0x40935738"/>
+        <function-ref name="runTask" scoped="" ref="0x40935818"/>
+      </interface-functions>
+    </interface>
+    <interface provided="0" name="TimerFrom" ref="0x40938338" loc="49:../../tos/lib/timer/VirtualizeTimerC.nc">
+      <component-ref qname="HilTimerMilliC.VirtualizeTimerC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="TimerFrom" scoped="" ref="0x40938338"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Timer"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x40936e38"/>
+        <function-ref name="fired" scoped="" ref="0x409360f0"/>
+        <function-ref name="startPeriodicAt" scoped="" ref="0x409367f8"/>
+        <function-ref name="isOneShot" scoped="" ref="0x409365a0"/>
+        <function-ref name="getdt" scoped="" ref="0x40935310"/>
+        <function-ref name="gett0" scoped="" ref="0x409350b8"/>
+        <function-ref name="isRunning" scoped="" ref="0x40936348"/>
+        <function-ref name="startPeriodic" scoped="" ref="0x40938960"/>
+        <function-ref name="startOneShotAt" scoped="" ref="0x40936b18"/>
+        <function-ref name="startOneShot" scoped="" ref="0x40938be0"/>
+        <function-ref name="stop" scoped="" ref="0x40938e60"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Timer" ref="0x40906f00" loc="48:../../tos/lib/timer/VirtualizeTimerC.nc">
+      <component-ref qname="HilTimerMilliC.VirtualizeTimerC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Timer" scoped="" ref="0x40906f00"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Timer"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <interface-parameters>
+        <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
+          <typename><typedef-ref name="uint8_t" ref="0x4003add8"/></typename>
+        </type-int>
+      </interface-parameters>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x40939b40"/>
+        <function-ref name="fired" scoped="" ref="0x40923ce0"/>
+        <function-ref name="startPeriodicAt" scoped="" ref="0x409394e0"/>
+        <function-ref name="isOneShot" scoped="" ref="0x40939278"/>
+        <function-ref name="getdt" scoped="" ref="0x40938048"/>
+        <function-ref name="gett0" scoped="" ref="0x40939da8"/>
+        <function-ref name="isRunning" scoped="" ref="0x40939010"/>
+        <function-ref name="startPeriodic" scoped="" ref="0x40923558"/>
+        <function-ref name="startOneShotAt" scoped="" ref="0x40939810"/>
+        <function-ref name="startOneShot" scoped="" ref="0x409237e8"/>
+        <function-ref name="stop" scoped="" ref="0x40923a78"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="LocalTime" ref="0x40933940" loc="48:../../tos/lib/timer/CounterToLocalTimeC.nc">
+      <component-ref qname="HilTimerMilliC.CounterToLocalTimeC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="LocalTime" scoped="" ref="0x40933940"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="LocalTime"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="get" scoped="" ref="0x4094f010"/>
+      </interface-functions>
+    </interface>
+    <interface provided="0" name="Counter" ref="0x4094f360" loc="49:../../tos/lib/timer/CounterToLocalTimeC.nc">
+      <component-ref qname="HilTimerMilliC.CounterToLocalTimeC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Counter" scoped="" ref="0x4094f360"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Counter"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+          <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+            <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+          </type-int>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="get" scoped="" ref="0x4094fab0"/>
+        <function-ref name="clearOverflow" scoped="" ref="0x40949010"/>
+        <function-ref name="isOverflowPending" scoped="" ref="0x4094fd28"/>
+        <function-ref name="overflow" scoped="" ref="0x40949288"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Timer" ref="0x40946c00" loc="45:../../tos/system/TimerMilliC.nc">
+      <component-ref qname="BootLedsAppC.LigarTimerB"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Timer" scoped="" ref="0x40946c00"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Timer"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x40944730"/>
+        <function-ref name="fired" scoped="" ref="0x409459b0"/>
+        <function-ref name="startPeriodicAt" scoped="" ref="0x409440f0"/>
+        <function-ref name="isOneShot" scoped="" ref="0x40945e60"/>
+        <function-ref name="getdt" scoped="" ref="0x40944be0"/>
+        <function-ref name="gett0" scoped="" ref="0x40944988"/>
+        <function-ref name="isRunning" scoped="" ref="0x40945c08"/>
+        <function-ref name="startPeriodic" scoped="" ref="0x40945258"/>
+        <function-ref name="startOneShotAt" scoped="" ref="0x40944410"/>
+        <function-ref name="startOneShot" scoped="" ref="0x409454d8"/>
+        <function-ref name="stop" scoped="" ref="0x40945758"/>
+      </interface-functions>
+    </interface>
+    <interface provided="1" name="Timer" ref="0x40943ab8" loc="45:../../tos/system/TimerMilliC.nc">
+      <component-ref qname="BootLedsAppC.LigarTimerC"/>
+      <type-interface size="I:2" alignment="I:2"><interface-ref name="Timer" scoped="" ref="0x40943ab8"/></type-interface>
+      <instance>
+        <interfacedef-ref qname="Timer"/>
+        <arguments>
+          <type-tag size="I:2" alignment="I:2"><struct-ref ref="0x405e9a00"/>
+            <typename><typedef-ref name="TMilli" ref="0x405e9bc8"/></typename>
+          </type-tag>
+        </arguments>
+      </instance>
+      <interface-functions>
+        <function-ref name="getNow" scoped="" ref="0x4095e650"/>
+        <function-ref name="fired" scoped="" ref="0x40942858"/>
+        <function-ref name="startPeriodicAt" scoped="" ref="0x4095e010"/>
+        <function-ref name="isOneShot" scoped="" ref="0x40942d08"/>
+        <function-ref name="getdt" scoped="" ref="0x4095eb00"/>
+        <function-ref name="gett0" scoped="" ref="0x4095e8a8"/>
+        <function-ref name="isRunning" scoped="" ref="0x40942ab0"/>
+        <function-ref name="startPeriodic" scoped="" ref="0x40942100"/>
+        <function-ref name="startOneShotAt" scoped="" ref="0x4095e330"/>
+        <function-ref name="startOneShot" scoped="" ref="0x40942380"/>
+        <function-ref name="stop" scoped="" ref="0x40942600"/>
       </interface-functions>
     </interface>
   </interfaces>
@@ -8759,6 +10380,457 @@
           <long>&#10; Event from the scheduler to run this task. Following the TinyOS&#10; concurrency model, the codes invoked from &#60;tt>run()&#60;/tt> signals&#10; execute atomically with respect to one another, but can be&#10; preempted by async commands/events.&#10;</long>
         </documentation>
         <interfacedef-ref qname="TaskBasic"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-void size="I:1" alignment="I:1"></type-void>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+    </interfacedef>
+    <interfacedef qname="Timer" loc="53:../../tos/lib/timer/Timer.nc">
+      <documentation loc="36:../../tos/lib/timer/Timer.nc">
+        <short>&#10; A Timer is TinyOS's general purpose timing interface.</short>
+        <long>&#10; A Timer is TinyOS's general purpose timing interface. For more precise&#10; timing, you may wish to use a (platform-specific) component offering&#10; an Alarm interface.&#10;&#10; &#60;p>A Timer is parameterised by its &#34;precision&#34; (milliseconds,&#10; microseconds, etc), identified by a type. This prevents, e.g.,&#10; unintentionally mixing components expecting milliseconds with those&#10; expecting microseconds as those interfaces have a different type.&#10;&#10; &#60;p>See TEP102 for more details.&#10;&#10; @param precision_tag A type indicating the precision of this Alarm.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
+      </documentation>
+      <parameters>
+        <typedef name="precision_tag" ref="0x40843be0" loc="53:../../tos/lib/timer/Timer.nc">
+          <interfacedef-ref qname="Timer"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="precision_tag" scoped="" ref="0x40843be0"/></type-var>
+        </typedef>
+      </parameters>
+      <function command="" provided="0" name="getNow" ref="0x40857520" loc="136:../../tos/lib/timer/Timer.nc">
+        <documentation loc="132:../../tos/lib/timer/Timer.nc">
+          <short>&#10; Return the current time.</short>
+          <long>&#10; Return the current time.&#10; @return Current time.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Timer"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+            <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+          </type-int>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+      <function event="" provided="0" name="fired" ref="0x408591a8" loc="83:../../tos/lib/timer/Timer.nc">
+        <documentation loc="80:../../tos/lib/timer/Timer.nc">
+          <short>&#10; Signaled when the timer expires (one-shot) or repeats (periodic).</short>
+          <long>&#10; Signaled when the timer expires (one-shot) or repeats (periodic).&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Timer"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-void size="I:1" alignment="I:1"></type-void>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+      <function command="" provided="0" name="startPeriodicAt" ref="0x40858358" loc="114:../../tos/lib/timer/Timer.nc">
+        <documentation loc="100:../../tos/lib/timer/Timer.nc">
+          <short>&#10; Set a periodic timer to repeat every dt time units.</short>
+          <long>&#10; Set a periodic timer to repeat every dt time units. Replaces any&#10; current timer settings. The &#60;code>fired&#60;/code> will be signaled every&#10; dt units (first event at t0+dt units). Periodic timers set in the past&#10; will get a bunch of events in succession, until the timer &#34;catches up&#34;.&#10;&#10; &#60;p>Because the current time may wrap around, it is possible to use&#10; values of t0 greater than the &#60;code>getNow&#60;/code>'s result. These&#10; values represent times in the past, i.e., the time at which getNow()&#10; would last of returned that value.&#10;&#10; @param t0 Base time for timer.&#10; @param dt Time until the timer fires.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Timer"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-void size="I:1" alignment="I:1"></type-void>
+          <function-parameters>
+            <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+              <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+            </type-int>
+            <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+              <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+            </type-int>
+          </function-parameters>
+        </type-function>
+        <parameters>
+          <variable name="t0" ref="0x40858010" loc="114:../../tos/lib/timer/Timer.nc">
+            <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+              <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+            </type-int>
+          </variable>
+          <variable name="dt" ref="0x408581f8" loc="114:../../tos/lib/timer/Timer.nc">
+            <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+              <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+            </type-int>
+          </variable>
+        </parameters>
+      </function>
+      <function command="" provided="0" name="isOneShot" ref="0x40859af8" loc="98:../../tos/lib/timer/Timer.nc">
+        <documentation loc="94:../../tos/lib/timer/Timer.nc">
+          <short>&#10; Check if this is a one-shot timer.</short>
+          <long>&#10; Check if this is a one-shot timer.&#10; @return TRUE for one-shot timers, FALSE for periodic timers.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Timer"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
+            <typename><typedef-ref name="bool" ref="0x4035ae80"/></typename>
+          </type-int>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+      <function command="" provided="0" name="getdt" ref="0x40857e98" loc="151:../../tos/lib/timer/Timer.nc">
+        <documentation loc="146:../../tos/lib/timer/Timer.nc">
+          <short>&#10; Return the delay or period for the previously started timer.</short>
+          <long>&#10; Return the delay or period for the previously started timer. The next&#10; fired event will occur at gett0() + getdt().&#10; @return Timer's interval.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Timer"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+            <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+          </type-int>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+      <function command="" provided="0" name="gett0" ref="0x40857968" loc="144:../../tos/lib/timer/Timer.nc">
+        <documentation loc="138:../../tos/lib/timer/Timer.nc">
+          <short>&#10; Return the time anchor for the previously started timer or the time of&#10; the previous event for periodic timers.</short>
+          <long>&#10; Return the time anchor for the previously started timer or the time of&#10; the previous event for periodic timers. The next fired event will occur&#10; at gett0() + getdt().&#10; @return Timer's base time.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Timer"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+            <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+          </type-int>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+      <function command="" provided="0" name="isRunning" ref="0x40859638" loc="92:../../tos/lib/timer/Timer.nc">
+        <documentation loc="86:../../tos/lib/timer/Timer.nc">
+          <short>&#10; Check if timer is running.</short>
+          <long>&#10; Check if timer is running. Periodic timers run until stopped or&#10; replaced, one-shot timers run until their deadline expires.&#10;&#10; @return TRUE if the timer is still running.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Timer"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
+            <typename><typedef-ref name="bool" ref="0x4035ae80"/></typename>
+          </type-int>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+      <function command="" provided="0" name="startPeriodic" ref="0x4085a270" loc="64:../../tos/lib/timer/Timer.nc">
+        <documentation loc="56:../../tos/lib/timer/Timer.nc">
+          <short>&#10; Set a periodic timer to repeat every dt time units.</short>
+          <long>&#10; Set a periodic timer to repeat every dt time units. Replaces any&#10; current timer settings. Equivalent to startPeriodicAt(getNow(),&#10; dt). The &#60;code>fired&#60;/code> will be signaled every dt units (first&#10; event in dt units).&#10;&#10; @param dt Time until the timer fires.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Timer"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-void size="I:1" alignment="I:1"></type-void>
+          <function-parameters>
+            <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+              <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+            </type-int>
+          </function-parameters>
+        </type-function>
+        <parameters>
+          <variable name="dt" ref="0x4085a118" loc="64:../../tos/lib/timer/Timer.nc">
+            <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+              <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+            </type-int>
+          </variable>
+        </parameters>
+      </function>
+      <function command="" provided="0" name="startOneShotAt" ref="0x40858d40" loc="129:../../tos/lib/timer/Timer.nc">
+        <documentation loc="116:../../tos/lib/timer/Timer.nc">
+          <short>&#10; Set a single-short timer to time t0+dt.</short>
+          <long>&#10; Set a single-short timer to time t0+dt. Replaces any current timer&#10; settings. The &#60;code>fired&#60;/code> will be signaled when the timer&#10; expires. Timers set in the past will fire &#34;soon&#34;.&#10;&#10; &#60;p>Because the current time may wrap around, it is possible to use&#10; values of t0 greater than the &#60;code>getNow&#60;/code>'s result. These&#10; values represent times in the past, i.e., the time at which getNow()&#10; would last of returned that value.&#10;&#10; @param t0 Base time for timer.&#10; @param dt Time until the timer fires.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Timer"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-void size="I:1" alignment="I:1"></type-void>
+          <function-parameters>
+            <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+              <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+            </type-int>
+            <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+              <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+            </type-int>
+          </function-parameters>
+        </type-function>
+        <parameters>
+          <variable name="t0" ref="0x408589f8" loc="129:../../tos/lib/timer/Timer.nc">
+            <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+              <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+            </type-int>
+          </variable>
+          <variable name="dt" ref="0x40858be0" loc="129:../../tos/lib/timer/Timer.nc">
+            <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+              <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+            </type-int>
+          </variable>
+        </parameters>
+      </function>
+      <function command="" provided="0" name="startOneShot" ref="0x4085a908" loc="73:../../tos/lib/timer/Timer.nc">
+        <documentation loc="66:../../tos/lib/timer/Timer.nc">
+          <short>&#10; Set a single-short timer to some time units in the future.</short>
+          <long>&#10; Set a single-short timer to some time units in the future. Replaces&#10; any current timer settings. Equivalent to startOneShotAt(getNow(),&#10; dt). The &#60;code>fired&#60;/code> will be signaled when the timer expires.&#10;&#10; @param dt Time until the timer fires.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Timer"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-void size="I:1" alignment="I:1"></type-void>
+          <function-parameters>
+            <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+              <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+            </type-int>
+          </function-parameters>
+        </type-function>
+        <parameters>
+          <variable name="dt" ref="0x4085a7b0" loc="73:../../tos/lib/timer/Timer.nc">
+            <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+              <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+            </type-int>
+          </variable>
+        </parameters>
+      </function>
+      <function command="" provided="0" name="stop" ref="0x4085add8" loc="78:../../tos/lib/timer/Timer.nc">
+        <documentation loc="75:../../tos/lib/timer/Timer.nc">
+          <short>&#10; Cancel a timer.</short>
+        </documentation>
+        <interfacedef-ref qname="Timer"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-void size="I:1" alignment="I:1"></type-void>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+    </interfacedef>
+    <interfacedef qname="LocalTime" loc="53:../../tos/lib/timer/LocalTime.nc">
+      <documentation loc="36:../../tos/lib/timer/LocalTime.nc">
+        <short>&#10; A LocalTime interface counts time in some units.</short>
+        <long>&#10; A LocalTime interface counts time in some units. If you need to detect&#10; time overflow, you should use a component offering the Counter&#10; interface.&#10;&#10; &#60;p>The LocalTime interface is parameterised by its &#34;precision&#34;&#10; (milliseconds, microseconds, etc), identified by a type. This prevents,&#10; e.g., unintentionally mixing components expecting milliseconds with&#10; those expecting microseconds as those interfaces have a different type.&#10;&#10; &#60;p>See TEP102 for more details.&#10;&#10; @param precision_tag A type indicating the precision of this Counter.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
+      </documentation>
+      <parameters>
+        <typedef name="precision_tag" ref="0x408715c8" loc="53:../../tos/lib/timer/LocalTime.nc">
+          <interfacedef-ref qname="LocalTime"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="precision_tag" scoped="" ref="0x408715c8"/></type-var>
+        </typedef>
+      </parameters>
+      <function command="" provided="0" name="get" ref="0x40871aa8" loc="61:../../tos/lib/timer/LocalTime.nc">
+        <documentation loc="55:../../tos/lib/timer/LocalTime.nc">
+          <short> &#10; Return current time.</short>
+          <long> &#10; Return current time. Time starts counting at boot - some time sources&#10; may stop counting while the processor is in low-power mode.&#10;&#10; @return Current time.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="LocalTime"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-int cname="unsigned long" unsigned="" size="I:4" alignment="I:2">
+            <typename><typedef-ref name="uint32_t" ref="0x401eb250"/></typename>
+          </type-int>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+    </interfacedef>
+    <interfacedef qname="Alarm" loc="56:../../tos/lib/timer/Alarm.nc">
+      <documentation loc="36:../../tos/lib/timer/Alarm.nc">
+        <short>&#10; An Alarm is a low-level interface intended for precise timing.</short>
+        <long>&#10; An Alarm is a low-level interface intended for precise timing.&#10;&#10; &#60;p>An Alarm is parameterised by its &#34;precision&#34; (milliseconds,&#10; microseconds, etc), identified by a type. This prevents, e.g.,&#10; unintentionally mixing components expecting milliseconds with those&#10; expecting microseconds as those interfaces have a different type.&#10;&#10; &#60;p>An Alarm's second parameter is its &#34;width&#34;, i.e., the number of&#10; bits used to represent time values. Width is indicated by including&#10; the appropriate size integer type as an Alarm parameter.&#10;&#10; &#60;p>See TEP102 for more details.&#10;&#10; @param precision_tag A type indicating the precision of this Alarm.&#10; @param size_type An integer type representing time values for this Alarm.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
+      </documentation>
+      <parameters>
+        <typedef name="precision_tag" ref="0x4086d6d8" loc="56:../../tos/lib/timer/Alarm.nc">
+          <interfacedef-ref qname="Alarm"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="precision_tag" scoped="" ref="0x4086d6d8"/></type-var>
+        </typedef>
+        <typedef name="size_type" ref="0x4086d840" loc="56:../../tos/lib/timer/Alarm.nc">
+          <interfacedef-ref qname="Alarm"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4086d840"/></type-var>
+        </typedef>
+      </parameters>
+      <function command="" provided="0" name="getNow" ref="0x40884b68" loc="109:../../tos/lib/timer/Alarm.nc">
+        <documentation loc="105:../../tos/lib/timer/Alarm.nc">
+          <short>&#10; Return the current time.</short>
+          <long>&#10; Return the current time.&#10; @return Current time.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Alarm"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4086d840"/></type-var>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+      <function event="" provided="0" name="fired" ref="0x40869830" loc="78:../../tos/lib/timer/Alarm.nc">
+        <documentation loc="75:../../tos/lib/timer/Alarm.nc">
+          <short>&#10; Signaled when the alarm expires.</short>
+        </documentation>
+        <interfacedef-ref qname="Alarm"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-void size="I:1" alignment="I:1"></type-void>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+      <function command="" provided="0" name="startAt" ref="0x40884520" loc="103:../../tos/lib/timer/Alarm.nc">
+        <documentation loc="90:../../tos/lib/timer/Alarm.nc">
+          <short>&#10; Set a single-short alarm to time t0+dt.</short>
+          <long>&#10; Set a single-short alarm to time t0+dt. Replaces any current alarm&#10; time. The &#60;code>fired&#60;/code> will be signaled when the alarm expires.&#10; Alarms set in the past will fire &#34;soon&#34;.&#10; &#10; &#60;p>Because the current time may wrap around, it is possible to use&#10; values of t0 greater than the &#60;code>getNow&#60;/code>'s result. These&#10; values represent times in the past, i.e., the time at which getNow()&#10; would last of returned that value.&#10;&#10; @param t0 Base time for alarm.&#10; @param dt Alarm time as offset from t0.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Alarm"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-void size="I:1" alignment="I:1"></type-void>
+          <function-parameters>
+            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4086d840"/></type-var>
+            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4086d840"/></type-var>
+          </function-parameters>
+        </type-function>
+        <parameters>
+          <variable name="t0" ref="0x408841d0" loc="103:../../tos/lib/timer/Alarm.nc">
+            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4086d840"/></type-var>
+          </variable>
+          <variable name="dt" ref="0x408843c0" loc="103:../../tos/lib/timer/Alarm.nc">
+            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4086d840"/></type-var>
+          </variable>
+        </parameters>
+      </function>
+      <function command="" provided="0" name="isRunning" ref="0x40869c78" loc="88:../../tos/lib/timer/Alarm.nc">
+        <documentation loc="81:../../tos/lib/timer/Alarm.nc">
+          <short>&#10; Check if alarm is running.</short>
+          <long>&#10; Check if alarm is running. Note that a FALSE return does not indicate&#10; that the &#60;code>fired&#60;/code> event will not be signaled (it may have&#10; already started executing, but not reached your code yet).&#10;&#10; @return TRUE if the alarm is still running.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Alarm"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
+            <typename><typedef-ref name="bool" ref="0x4035ae80"/></typename>
+          </type-int>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+      <function command="" provided="0" name="getAlarm" ref="0x40883010" loc="116:../../tos/lib/timer/Alarm.nc">
+        <documentation loc="111:../../tos/lib/timer/Alarm.nc">
+          <short>&#10; Return the time the currently running alarm will fire or the time that&#10; the previously running alarm was set to fire.</short>
+          <long>&#10; Return the time the currently running alarm will fire or the time that&#10; the previously running alarm was set to fire.&#10; @return Alarm time.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Alarm"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4086d840"/></type-var>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+      <function command="" provided="0" name="start" ref="0x4086de70" loc="66:../../tos/lib/timer/Alarm.nc">
+        <documentation loc="59:../../tos/lib/timer/Alarm.nc">
+          <short>&#10; Set a single-short alarm to some time units in the future.</short>
+          <long>&#10; Set a single-short alarm to some time units in the future. Replaces&#10; any current alarm time. Equivalent to start(getNow(), dt). The&#10; &#60;code>fired&#60;/code> will be signaled when the alarm expires.&#10;&#10; @param dt Time until the alarm fires.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Alarm"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-void size="I:1" alignment="I:1"></type-void>
+          <function-parameters>
+            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4086d840"/></type-var>
+          </function-parameters>
+        </type-function>
+        <parameters>
+          <variable name="dt" ref="0x4086dd18" loc="66:../../tos/lib/timer/Alarm.nc">
+            <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x4086d840"/></type-var>
+          </variable>
+        </parameters>
+      </function>
+      <function command="" provided="0" name="stop" ref="0x408693d0" loc="73:../../tos/lib/timer/Alarm.nc">
+        <documentation loc="68:../../tos/lib/timer/Alarm.nc">
+          <short>&#10; Cancel an alarm.</short>
+          <long>&#10; Cancel an alarm. Note that the &#60;code>fired&#60;/code> event may have&#10; already been signaled (even if your code has not yet started&#10; executing).&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Alarm"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-void size="I:1" alignment="I:1"></type-void>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+    </interfacedef>
+    <interfacedef qname="Counter" loc="57:../../tos/lib/timer/Counter.nc">
+      <documentation loc="36:../../tos/lib/timer/Counter.nc">
+        <short>&#10; A Counter counts time in some units and in some width, signaling&#10; overflow.</short>
+        <long>&#10; A Counter counts time in some units and in some width, signaling&#10; overflow.&#10;&#10; &#60;p>A Counter is parameterised by its &#34;precision&#34; (milliseconds,&#10; microseconds, etc), identified by a type. This prevents, e.g.,&#10; unintentionally mixing components expecting milliseconds with those&#10; expecting microseconds as those interfaces have a different type.&#10;&#10; &#60;p>A Counter's second parameter is its &#34;width&#34;, i.e., the number of&#10; bits used to represent time values. Width is indicated by including&#10; the appropriate size integer type as a Counter parameter.&#10;&#10; &#60;p>See TEP102 for more details.&#10;&#10; @param precision_tag A type indicating the precision of this Counter.&#10; @param size_type An integer type representing time values for this Counter.&#10;&#10; @author Cory Sharp &#60;cssharp@eecs.berkeley.edu>&#10;</long>
+      </documentation>
+      <parameters>
+        <typedef name="precision_tag" ref="0x408ba7e8" loc="57:../../tos/lib/timer/Counter.nc">
+          <interfacedef-ref qname="Counter"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="precision_tag" scoped="" ref="0x408ba7e8"/></type-var>
+        </typedef>
+        <typedef name="size_type" ref="0x408ba950" loc="57:../../tos/lib/timer/Counter.nc">
+          <interfacedef-ref qname="Counter"/>
+          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x408ba950"/></type-var>
+        </typedef>
+      </parameters>
+      <function command="" provided="0" name="get" ref="0x408bae38" loc="64:../../tos/lib/timer/Counter.nc">
+        <documentation loc="59:../../tos/lib/timer/Counter.nc">
+          <short> &#10; Return counter value.</short>
+          <long> &#10; Return counter value. Counters start at boot - some time sources may&#10; stop counting while the processor is in low-power mode.&#10; @return Current counter value.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Counter"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-var size="U:" alignment="U:"><typedef-ref name="size_type" scoped="" ref="0x408ba950"/></type-var>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+      <function command="" provided="0" name="clearOverflow" ref="0x408b7890" loc="76:../../tos/lib/timer/Counter.nc">
+        <documentation loc="73:../../tos/lib/timer/Counter.nc">
+          <short>&#10; Cancel a pending overflow interrupt.</short>
+        </documentation>
+        <interfacedef-ref qname="Counter"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-void size="I:1" alignment="I:1"></type-void>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+      <function command="" provided="0" name="isOverflowPending" ref="0x408b7390" loc="71:../../tos/lib/timer/Counter.nc">
+        <documentation loc="66:../../tos/lib/timer/Counter.nc">
+          <short> &#10; Return TRUE if an overflow event will occur after the outermost atomic&#10; block is exits.</short>
+          <long> &#10; Return TRUE if an overflow event will occur after the outermost atomic&#10; block is exits.  FALSE otherwise.&#10; @return Counter pending overflow status.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Counter"/>
+        <type-function size="I:1" alignment="I:1">
+          <type-int cname="unsigned char" unsigned="" size="I:1" alignment="I:1">
+            <typename><typedef-ref name="bool" ref="0x4035ae80"/></typename>
+          </type-int>
+          <function-parameters>
+          </function-parameters>
+        </type-function>
+        <parameters>
+        </parameters>
+      </function>
+      <function event="" provided="0" name="overflow" ref="0x408b7c90" loc="82:../../tos/lib/timer/Counter.nc">
+        <documentation loc="78:../../tos/lib/timer/Counter.nc">
+          <short>&#10; Signals that the current time has overflowed.</short>
+          <long>&#10; Signals that the current time has overflowed.  That is, the current&#10; time has wrapped around from its maximum value to zero.&#10;</long>
+        </documentation>
+        <interfacedef-ref qname="Counter"/>
         <type-function size="I:1" alignment="I:1">
           <type-void size="I:1" alignment="I:1"></type-void>
           <function-parameters>
